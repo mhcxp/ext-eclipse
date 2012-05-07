@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: IDE Site Bean
+Bundle-SymbolicName: galaxy.ide.site;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: galaxy.ide.site.Activator
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: galaxy.ide.site.role
+Bundle-ActivationPolicy: lazy
