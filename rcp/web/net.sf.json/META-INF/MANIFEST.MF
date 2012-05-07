@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Json Lib
+Bundle-SymbolicName: net.sf.json;singleton:=true
+Bundle-Version: 1.0
+Bundle-Vendor: Apple Inc.
+Export-Package: net.sf.json,
+ net.sf.json.filters,
+ net.sf.json.groovy,
+ net.sf.json.processors,
+ net.sf.json.regexp,
+ net.sf.json.util,
+ net.sf.json.xml
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ lib/ezmorph-1.0.6.jar,
+ lib/groovy.jar,
+ lib/jakarta-oro-2.0.8.jar,
+ lib/morph-1.1.1.jar,
+ lib/xom-1.2.1.jar
+Require-Bundle: org.apache.commons.beanutils,
+ org.apache.commons.lang,
+ org.apache.commons.collections,
+ org.apache.commons.logging
