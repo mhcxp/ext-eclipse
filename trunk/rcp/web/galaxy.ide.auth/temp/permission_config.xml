@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GBK"?>
+<permissions>
+	<mars>
+		<actions>
+			<action id="00" name="new">
+				<value>新增</value>
+			</action>
+			<action id="01" name="delete">
+				<value>删除</value>
+			</action>
+			<action id="02" name="modify">
+				<value>修改</value>
+			</action>
+			<action id="03" name="compile">
+				<value>编译</value>
+			</action>
+			<action id="04" name="deploy">
+				<value>部署</value>
+			</action>
+			<action id="05" name="browse">
+				<value>查看</value>
+			</action>
+			<action id="06" name="sync">
+				<value>同步</value>
+			</action>
+			<action id="07" name="export">
+				<value>文档导出</value>
+			</action>
+			<action id="08" name="export_detail">
+				<value>文档清单导出</value>
+			</action>
+			<action id="FF" name="default">
+				<value>默认</value>
+			</action>
+
+		</actions>
+		<resources>
+			<resource id="00" ext="tcd">
+				<value>技术组件</value>
+			</resource>
+			<resource id="01" ext="bcd">
+				<value>业务组件</value>
+			</resource>
+			<resource id="02" ext="trd">
+				<value>交易模型</value>
+			</resource>
+			<resource id="03" ext="twf">
+				<value>交易</value>
+			</resource>
+			<resource id="04" ext="tmpl">
+				<value>交易模板</value>
+			</resource>
+			<resource id="05" ext="tmd">
+				<value>数据表模型</value>
+			</resource>			
+			<resource id="06" ext="dict">
+				<value>数据字典</value>
+			</resource>
+			<resource id="07" ext="folder_project">
+				<value>项目</value>
+			</resource>	
+			<resource id="08" ext="folder_application">
+				<value>应用</value>
+			</resource>					
+			<resource id="FF" ext="default">
+				<value>默认</value>
+			</resource>
+		</resources>
+	</mars>
+</permissions>
