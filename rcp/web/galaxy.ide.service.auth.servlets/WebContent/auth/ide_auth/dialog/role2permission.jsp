@@ -77,7 +77,7 @@
 		})
 
 		// Column Model shortcut array
-		var cols = [ {
+		var cols = [{
 			id : 'pid',
 			header : "ID",
 			width : 80,
@@ -119,16 +119,48 @@
 			reader : jsonReader
 		});
 		secondGridStore.load();
+		
+		var secondGridStore2 = new Ext.data.Store({
+			url : '/jspHttpServlet?service=jsp_showPerms&ex_rid='
+					+ sel.get('rid'),
+			reader : jsonReader
+		});
+		secondGridStore2.load();
+		
+		var searchPer = new Ext.form.TextField({
+			name : 'searchPer',
+			width : 150,
+			emptyText : '请输入查询条件:名称',
+			listeners:{			//监听   值改变则从新过滤
+				change:function(){
+					var search= searchPer.getValue();
+					var num = secondGridStore.getCount();
+					secondGridStore2.removeAll();
+					for(var i = 0;i<num;i++){
+						var name = secondGridStore.getAt(i).get("name");
+						if(search==""){
+							secondGridStore2.add(secondGridStore.getAt(i));
+						}
+						if(search!="" && name.indexOf(search) != -1){	//合格的
+							secondGridStore2.add(secondGridStore.getAt(i));
+						}
+					}
+				}
+			}
+		});
 		// create the destination Grid
 		var secondGrid = new Ext.grid.GridPanel({
 			ddGroup : 'firstGridDDGroup',
-			store : secondGridStore,
+			store : secondGridStore2,
+			tbar: [searchPer],
 			columns : cols,
 			enableDragDrop : true,
 			stripeRows : true,
 			autoExpandColumn : 'name',
 			title : '未关联权限'
 		});
+		
+		
 
 		//Simple 'border layout' panel to house both grids
 		var displayPanel = new Ext.Panel({
@@ -189,6 +221,7 @@
 						var records = ddSource.dragData.selections;
 						Ext.each(records, ddSource.grid.store.remove,
 								ddSource.grid.store);
+						secondGridStore.remove(records);
 						firstGrid.store.add(records);
 						firstGrid.store.sort('name', 'ASC');
 						return true
@@ -202,8 +235,10 @@
 					ddGroup : 'secondGridDDGroup',
 					notifyDrop : function(ddSource, e, data) {
 						var records = ddSource.dragData.selections;
+						alert(records.get("name"));
 						Ext.each(records, ddSource.grid.store.remove,
 								ddSource.grid.store);
+						secondGridStore.remove(records);
 						secondGrid.store.add(records);
 						secondGrid.store.sort('name', 'ASC');
 						return true
@@ -211,6 +246,7 @@
 				});
 
 	});
+	
 </script>
 
 <body>

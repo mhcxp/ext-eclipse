@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class AdminBean implements Serializable {
 
-	// private int total;
+	private int total;
 
 	// private
 

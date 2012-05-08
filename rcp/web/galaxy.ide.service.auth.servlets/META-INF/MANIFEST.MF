@@ -9,7 +9,7 @@ Import-Package: galaxy.ide.service.auth,
  javax.servlet.http;version="2.5.0",
  net.sf.json,
  org.osgi.service.http;version="1.2.1"
-Service-Component: OSGI-INF/component.xml,OSGI-INF/jsp_servlet.xml,OSGI-INF/jsp_dojo.xml
+Service-Component: OSGI-INF/component.xml,OSGI-INF/jsp_servlet.xml
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Require-Bundle: galaxy.ide.auth;bundle-version="1.0.0",

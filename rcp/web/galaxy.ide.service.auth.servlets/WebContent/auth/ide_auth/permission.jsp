@@ -233,7 +233,7 @@
 			});
 
 	grid.on('rowdblclick', function() {
-		winModify.show();
+		//winModify.show();
 	});
 	// grid end
 	Ext.onReady(function() {
