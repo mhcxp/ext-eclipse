@@ -66,9 +66,8 @@ public class JspHttpServlet extends HttpServlet {
 
 	private static final String SERVICE_JSP_REMOVEPCATES = "jsp_removePCates";
 
-	@SuppressWarnings("unused")
 	private static final String SERVICE_JSP_MODIFYPCATE = "jsp_modifyPCate";
-	@SuppressWarnings("unused")
+
 	private static final String EXEC_SQL = "exec_sql";
 
 	private static final String SERVICE_JSP_SHOWADMINS = "jsp_showAdmins";
@@ -613,7 +612,6 @@ public class JspHttpServlet extends HttpServlet {
 		resp.sendRedirect("/auth/index.jsp");
 	}
 
-	@SuppressWarnings("unused")
 	private void doWriteString(HttpServletResponse resp, String msg)
 			throws IOException {
 		resp.setContentType("text/html");

@@ -134,6 +134,19 @@ var tbar = new Ext.Toolbar({
 			}]
 });
 
+		var search_Name = new Ext.form.TextField({
+			name : 'search_Name',
+			width : 150,
+			emptyText : '请输入查询条件:登录名'
+		});
+		
+		
+		var search_Nickname = new Ext.form.TextField({
+			name : 'search_Nickname',
+			width : 150,
+			emptyText : '请输入查询条件:昵称'
+		});
+
 var UserRecord = Ext.data.Record.create([{
 			name : 'id',
 			type : 'string'
@@ -177,26 +190,69 @@ columns.defaultSortable = true;
 		}, UserRecord),
 		remoteSort : true
 	});
-
 	
+	var store2 = new Ext.data.Store({
+		proxy:new Ext.data.HttpProxy({
+			url:SERVLET_URL+"?"+KEY_SERVICE+"="+SERVICE_JSP_SHOWUSERS
+		}),
+		reader : new Ext.data.JsonReader({
+			fields:['uid','name','info','roles'],
+			root:'rows'
+		}, UserRecord),
+		remoteSort : true
+	});
+
+	var search = new Ext.Button({
+			text:"查询",
+			handler:function(){
+				var searchName = search_Name.getValue();
+				var searchNickname = search_Nickname.getValue();
+				
+				var num = store.getCount();
+				store2.removeAll();
+				for(var i = 0;i<num;i++){
+					var name = store.getAt(i).get("uid");
+					var nickname = store.getAt(i).get("name");
+					
+					if(searchName == ""){
+						if(searchNickname == ""){
+							store2.add(store.getAt(i));
+						}else{
+							if(nickname.indexOf(searchNickname) != -1){	//昵称匹配的
+								store2.add(store.getAt(i));
+							}
+						}
+					}else{
+						if(name.indexOf(searchName) != -1){	//登录名匹配的
+							store2.add(store.getAt(i));
+						}else{
+							if(searchNickname != "" && nickname.indexOf(searchNickname) != -1){
+								store2.add(store.getAt(i));
+							}
+						}
+					}
+				}
+			}
+		});
+		
 	// grid start
 	var grid = new Ext.grid.GridPanel({
 		region : 'center',
 		title : '用户信息列表',
 		loadMask : true,
-		store:store,
+		store:store2,
 		cm : columns,
 		viewConfig : {
 			forceFit : true
 		},
 		bbar : new Ext.PagingToolbar({
 			pageSize : ${max_row_count},
-			store : store,
+			store : store2,
 			displayInfo : true,
 	        displayMsg: '显示条目{0} - {1} of {2}',
 	        emptyMsg: "没有可显示的条目存在"
 		}),
-		tbar : [ tbar]
+		tbar : [ tbar,search_Name,search_Nickname,search]
 	});
 	
 	grid.on('rowdblclick',function(){ 
@@ -213,6 +269,18 @@ columns.defaultSortable = true;
 
 	refreshStore = function() {
 		store.reload();
+	}
+	
+	store2.load({
+		params : {
+			service:SERVICE_JSP_SHOWUSERS,
+			start : 0,
+			limit : ${max_row_count}
+		}
+	});
+
+	refreshStore = function() {
+		store2.reload();
 	}
 	// grid end
 	Ext.onReady(function() {
