@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<description>A taglib to define some EL accessible functions for the
+		jsp pages under /auth.
+	</description>
+	<tlib-version>1.0</tlib-version>
+	<short-name>auth_lib</short-name>
+	<uri>http://www.arzan.com/auth/function-taglib</uri>
+
+	<!-- example for test -->
+	<function>
+		<description>Exposes the abs() function from java.lang.Math
+			package
+		</description>
+		<name>abs</name>
+		<function-class>java.lang.Math</function-class>
+		<function-signature>int abs( int )</function-signature>
+	</function>
+
+</taglib>

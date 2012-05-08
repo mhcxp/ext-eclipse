@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee" version="2.4">
+
+	<context-param><!-- setLocale -->
+		<param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+		<param-value>zh_CN</param-value>
+	</context-param>
+	<context-param><!-- fallback locale -->
+		<param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
+		<param-value>zh</param-value>
+	</context-param>
+	<context-param><!--default resource bundle's basename -->
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext
+		</param-name>
+		<param-value>nls.messages</param-value>
+	</context-param>
+
+
+	<taglib>
+		<taglib-uri>
+			http://www.arzan.com/auth/function-taglib
+		</taglib-uri>
+		<taglib-location>
+			/WEB-INF/tags/function-taglib.tld
+		</taglib-location>
+	</taglib>
+
+</web-app>
