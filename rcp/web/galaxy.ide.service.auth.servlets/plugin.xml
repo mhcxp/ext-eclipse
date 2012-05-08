@@ -84,8 +84,8 @@
             class="org.eclipse.equinox.jsp.jasper.registry.JSPFactory:/WebContent/dojo/pages/">
       </servlet>
       <servlet
-            alias="/dojo/pages/common/*.jsp"
-            class="org.eclipse.equinox.jsp.jasper.registry.JSPFactory:/WebContent/dojo/pages/common/">
+            alias="/dojo/*.html"
+            class="org.eclipse.equinox.jsp.jasper.registry.JSPFactory:/WebContent/dojo/pages/">
       </servlet>
       </extension>
 </plugin>
