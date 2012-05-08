@@ -1,0 +1,10 @@
+/**
+	存放js文件,记录文件创建、更新、删除等信息；
+*/
+
+/**
+	author：  tpm
+	date:	2012.5.8
+	action:	1.文件夹dojo、dijit、dojox中都为dojo的源文件
+			2.widget中存放自己定义的小控件
+*/
