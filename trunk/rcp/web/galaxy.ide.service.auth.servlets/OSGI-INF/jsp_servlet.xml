@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="Authorization Jsp Service">
+   <implementation class="galaxy.ide.service.auth.servlets.JspHttpServlet"/>
+   <reference bind="setHttpService" cardinality="1..1" interface="org.osgi.service.http.HttpService" name="HttpService" policy="dynamic" unbind="unsetHttpService"/>
+   <reference bind="setAuthService" cardinality="1..1" interface="galaxy.ide.service.auth.AuthorizationService" name="AuthorizationService" policy="static" unbind="unsetAuthService"/>
+</scr:component>
