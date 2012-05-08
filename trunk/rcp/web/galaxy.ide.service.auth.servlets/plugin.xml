@@ -24,6 +24,18 @@
             alias="/auth/test/js"
             base-name="/WebContent/auth/test/js">
       </resource>
+      <resource
+            alias="/dojo/js"
+            base-name="/WebContent/dojo/js">
+      </resource>
+      <resource
+            alias="/dojo/css"
+            base-name="/WebContent/dojo/css">
+      </resource>
+      <resource
+            alias="/dojo/resource"
+            base-name="/WebContent/dojo/resource">
+      </resource>
    </extension>
    <extension
          point="org.eclipse.equinox.http.registry.servlets"> 
@@ -66,6 +78,14 @@
       <servlet
             alias="/auth/test/*.jsp"
             class="org.eclipse.equinox.jsp.jasper.registry.JSPFactory:/WebContent/auth/test/">
+      </servlet>
+      <servlet
+            alias="/dojo/*.jsp"
+            class="org.eclipse.equinox.jsp.jasper.registry.JSPFactory:/WebContent/dojo/pages/">
+      </servlet>
+      <servlet
+            alias="/dojo/pages/common/*.jsp"
+            class="org.eclipse.equinox.jsp.jasper.registry.JSPFactory:/WebContent/dojo/pages/common/">
       </servlet>
       </extension>
 </plugin>
