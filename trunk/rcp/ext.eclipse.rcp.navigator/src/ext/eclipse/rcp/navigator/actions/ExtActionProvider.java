@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ext.eclipse.rcp.navigator;
+package ext.eclipse.rcp.navigator.actions;
 
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.IActionBars;
 
+import ext.eclipse.common.navigator.actions.ExtCommonActionProvider;
+
 /**
  * @version 1.0 2012-5-3 下午4:10:30
  */
-public class ExtCommonActionProviderImpl extends ExtCommonActionProvider {
+public class ExtActionProvider extends ExtCommonActionProvider {
 	
 	protected void buildActions() {
 	}
