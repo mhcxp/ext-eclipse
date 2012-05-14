@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ext Common Navigator
+Bundle-SymbolicName: ext.eclipse.common.navigator
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: ext.eclipse.common.navigator.Activator
+Bundle-Vendor: Ext-Eclipse
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.navigator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.ui.actions
+Export-Package: ext.eclipse.common.navigator.actions
