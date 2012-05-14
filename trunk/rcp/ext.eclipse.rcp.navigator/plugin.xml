@@ -62,6 +62,7 @@
          point="org.eclipse.ui.views">
       <view
             allowMultiple="false"
+            category="ext.eclipse.rcp.views"
             class="org.eclipse.ui.navigator.CommonNavigator"
             id="ext.eclipse.rcp.navigator"
             name="%ExtNavigator.name"
@@ -74,7 +75,7 @@
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="ext.eclipse.rcp.app.perspective">
+            targetID="ext.eclipse.rcp.perspective">
       </perspectiveExtension>
    </extension>
    <extension
