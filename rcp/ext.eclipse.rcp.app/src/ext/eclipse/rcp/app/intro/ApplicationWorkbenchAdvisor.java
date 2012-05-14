@@ -25,7 +25,7 @@ import org.eclipse.ui.ide.IDE;
 
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
-	private static final String PERSPECTIVE_ID = "ext.eclipse.rcp.app.perspective";
+	private static final String PERSPECTIVE_ID = "ext.eclipse.rcp.perspective";
 
 	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
 			IWorkbenchWindowConfigurer configurer) {
