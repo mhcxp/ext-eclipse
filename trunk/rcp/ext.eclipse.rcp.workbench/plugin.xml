@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="ext.eclipse.rcp.workbench.ui.ExtPerspective"
+            id="ext.eclipse.rcp.perspective"
+            name="%Ext-Eclipse.Perspective">
+      </perspective>
+   </extension>
+  <extension
+        point="org.eclipse.ui.views">
+     <category
+           id="ext.eclipse.rcp.views"
+           name="%ext.views">
+     </category>
+  </extension>
+
+</plugin>
