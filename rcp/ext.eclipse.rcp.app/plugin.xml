@@ -14,14 +14,6 @@
       </application>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectives">
-      <perspective
-            class="ext.eclipse.rcp.app.intro.ExtPerspective"
-            id="ext.eclipse.rcp.app.perspective"
-            name="%Ext-Eclipse.Perspective">
-      </perspective>
-   </extension>
-   <extension
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
