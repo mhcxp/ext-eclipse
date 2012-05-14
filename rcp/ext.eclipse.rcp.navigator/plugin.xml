@@ -5,9 +5,10 @@
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="true"
-            contentProvider="org.eclipse.ui.model.WorkbenchContentProvider"
+            appearsBefore="org.eclipse.ui.navigator.resourceContent"
+            contentProvider="ext.eclipse.rcp.navigator.view.ExtContentProvider"
             id="ext.eclipse.rcp.navigator.resourceContent"
-            labelProvider="org.eclipse.ui.model.WorkbenchLabelProvider"
+            labelProvider="ext.eclipse.rcp.navigator.view.ExtLabelProvider"
             name="%ext.resourceContent"
             priority="normal">
          <triggerPoints>
@@ -23,6 +24,10 @@
                </instanceof>
             </or>
          </possibleChildren>
+         <actionProvider
+               class="ext.eclipse.rcp.navigator.actions.ExtActionProvider"
+               priority="normal">
+         </actionProvider>
       </navigatorContent>
    </extension>
    <extension
@@ -47,6 +52,9 @@
             <actionExtension
                   pattern="org.eclipse.ui.navigator.resources.*">
             </actionExtension>
+            <actionExtension
+                  pattern="ext.eclipse.rcp.navigator.actions.*">
+            </actionExtension>
          </includes>
       </viewerActionBinding>
    </extension>
@@ -59,7 +67,7 @@
             name="%ExtNavigator.name"
             restorable="true">
          <description>
-            description body text
+            Ext Navigator
          </description>
       </view>
    </extension>
