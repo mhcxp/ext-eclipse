@@ -82,6 +82,9 @@ public class JspHttpServlet extends HttpServlet {
 
 	private AuthorizationService authService;
 
+	private final int START = 0;
+	private final int LIMIT = Integer.MAX_VALUE;
+
 	public void setAuthService(AuthorizationService authService) {
 		this.authService = authService;
 	}
@@ -250,8 +253,8 @@ public class JspHttpServlet extends HttpServlet {
 	private void showAdmins(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		// TODO 展示管理员
-		int start = Integer.parseInt(req.getParameter("start"));
-		int limit = Integer.parseInt(req.getParameter("limit"));
+		int start = handleInteger(req.getParameter("start"), START);
+		int limit = handleInteger(req.getParameter("limit"), LIMIT);
 		List<IAdmin> users = authService.getAllAdmins(start, limit);
 		int total = authService.getAllAdmins().size();
 		StringBuilder sb = new StringBuilder();
@@ -489,8 +492,8 @@ public class JspHttpServlet extends HttpServlet {
 			return;
 		}
 
-		int start = Integer.parseInt(req.getParameter("start"));
-		int limit = Integer.parseInt(req.getParameter("limit"));
+		int start = handleInteger(req.getParameter("start"), START);
+		int limit = handleInteger(req.getParameter("limit"), LIMIT);
 		List<IRole> roles = authService.getAllRoles(start, limit);
 		int total = authService.getAllRoles().size();
 
@@ -567,8 +570,8 @@ public class JspHttpServlet extends HttpServlet {
 
 	private void showUsers(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		int start = Integer.parseInt(req.getParameter("start"));
-		int limit = Integer.parseInt(req.getParameter("limit"));
+		int start = handleInteger(req.getParameter("start"), START);
+		int limit = handleInteger(req.getParameter("limit"), LIMIT);
 		List<IUser> users = authService.getAllUsers(start, limit);
 		int total = authService.getAllUsers().size();
 
@@ -603,6 +606,21 @@ public class JspHttpServlet extends HttpServlet {
 
 		// print(json);
 
+	}
+
+	/**
+	 * 字符串转换整数，如果出错，返回默认值
+	 * 
+	 * @param parameter
+	 * @param def
+	 * @return
+	 */
+	private int handleInteger(String parameter, int def) {
+		try {
+			return Integer.parseInt(parameter);
+		} catch (NumberFormatException e) {
+		}
+		return def;
 	}
 
 	private void logout(HttpServletRequest req, HttpServletResponse resp)
