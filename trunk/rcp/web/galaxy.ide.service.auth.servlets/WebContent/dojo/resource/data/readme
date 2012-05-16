@@ -1,0 +1,10 @@
+/**
+	存放数据信息资源(例如.json/.xml等),记录数据资源的创建、更新、删除等信息；
+*/
+
+for example：
+/**
+	author：
+	date:
+	action:
+*/
