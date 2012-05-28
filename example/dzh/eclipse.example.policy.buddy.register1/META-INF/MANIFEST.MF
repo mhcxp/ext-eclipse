@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Register1
+Bundle-SymbolicName: eclipse.example.policy.buddy.register1;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Eclipse-RegisterBuddy: eclipse.example.policy.buddy
+Bundle-Activator: eclipse.example.policy.buddy.register1.Activator
+Bundle-Vendor: Ext-Eclipse
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: eclipse.example.policy.buddy.register1
+Require-Bundle: eclipse.example.policy.buddy;bundle-version="1.0.0"
