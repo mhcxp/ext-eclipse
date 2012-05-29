@@ -1,8 +1,7 @@
 #summary 说明Ext-Eclipse的资源在SVN上的分布,初步直观了解内容
 #labels Featured,Phase-Deploy
 
-= SVN根目录 =
-[https://ext-eclipse.googlecode.com/svn/trunk]
+= SVN根目录 =,,[https://ext-eclipse.googlecode.com/svn/trunk],,
 */resource*
 1)这是一个最普通项目,可以直接在*resource*上checkout;
 2)包含Ext项目计划,介绍,和各种各样的资源,所以建议首先checkout这个项目;
