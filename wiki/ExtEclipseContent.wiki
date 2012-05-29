@@ -1,4 +1,4 @@
-#summary 说明Ext-Eclipse的资源在SVN上的分布
+#summary 说明Ext-Eclipse的资源在SVN上的分布,初步直观了解内容
 #labels Featured,Phase-Deploy
 
 = Introduction =
