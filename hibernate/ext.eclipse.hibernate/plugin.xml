@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="ext.eclipse.hibernate.bean.configure" name="%BeanConfigure" schema="schema/ext.eclipse.hibernate.bean.configure.exsd"/>
+   <extension-point id="ext.eclipse.hibernate.database.configure" name="%DBConfigure" schema="schema/ext.eclipse.hibernate.database.configure.exsd"/>
+   <extension-point id="ext.eclipse.hibernate.database.mapping" name="DBMapping" schema="schema/ext.eclipse.hibernate.database.mapping.exsd"/>
+
+</plugin>
