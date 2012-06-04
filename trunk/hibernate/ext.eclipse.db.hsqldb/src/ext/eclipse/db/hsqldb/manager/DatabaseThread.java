@@ -21,6 +21,7 @@ public class DatabaseThread implements Runnable {
 	}
 
 	public void run() {
+		System.out.println("\n------------------\n\nHSQLDB STARTING\n\n------------------\n");
 		DatabaseManager.main(new String[] { "" });
 		String[] args = null;
 		ArrayList<String> list = new ArrayList<String>();
@@ -49,8 +50,8 @@ public class DatabaseThread implements Runnable {
 			args[i] = (String) list.get(i);
 			System.out.println(args);
 		}
+		System.out.println("\n------------------\n\nHSQLDB STARTED\n\n------------------\n");
 		Server.main(args);
-
 	}
 
 	public String getAddress() {

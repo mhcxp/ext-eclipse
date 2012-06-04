@@ -3,7 +3,7 @@ package ext.eclipse.db.hsqldb;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import ext.example.db.server.DBServer;
+import ext.eclipse.db.server.DBServer;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -32,7 +32,6 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		System.out.println("\n------------------\n\nHSQLDB START!\n\n------------------\n");
 		DBServer.start();
 	}
 
