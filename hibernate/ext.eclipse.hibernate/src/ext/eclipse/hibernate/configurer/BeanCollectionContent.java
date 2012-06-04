@@ -20,7 +20,7 @@ public class BeanCollectionContent implements IHbmConfigurer {
 		return content;
 	}
 
-	public String getType(Class cls) {
+	public String getType(Class<?> cls) {
 		String type = null;
 		if (cls == Key.class) {
 			type = KEY;

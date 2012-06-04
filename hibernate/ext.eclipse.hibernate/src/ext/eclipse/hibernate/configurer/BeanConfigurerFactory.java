@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.Platform;
 import ext.eclipse.hibernate.configurer.constants.BeanConstants;
 
 /**
- * JavaBean配置组装工厂类
+ * JavaBean configurer factory
  * 
  * @author caiyu
  * 
@@ -124,7 +124,7 @@ public class BeanConfigurerFactory {
 			if (BeanConstants.M2M.equals(element.getName())) {
 
 			} else if (BeanConstants.KEY.equals(element.getName())) {
-				String column = element.getAttribute(BeanConstants.COLUMN);
+//				String column = element.getAttribute(BeanConstants.COLUMN);
 			} else if (BeanConstants.INDEX.equals(element.getName())) {
 			}
 		}
@@ -168,7 +168,7 @@ public class BeanConfigurerFactory {
 	}
 
 	/**
-	 * 根据类名来获得JavaBean配置
+	 * 鏍规嵁绫诲悕鏉ヨ幏寰桱avaBean閰嶇疆
 	 * 
 	 * @param cls
 	 * @return

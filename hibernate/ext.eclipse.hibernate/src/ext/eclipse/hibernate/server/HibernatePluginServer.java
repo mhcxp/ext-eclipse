@@ -87,6 +87,7 @@ public final class HibernatePluginServer {
 	 * @param sql
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Object> querySQL(String sql) {
 		Session session = getSessionFactory().getCurrentSession();
 
