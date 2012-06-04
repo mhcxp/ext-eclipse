@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.dom4j.Document;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
@@ -19,15 +20,20 @@ public final class HibernatePluginServer {
 		INSTANCE = new HibernatePluginServer();
 	}
 	private SessionFactory sessionFactory;
-	private String id;
+	private String databaseId;
 
-	public void create(String id) {
+	/**
+	 * 根绝数据库ID创建SessionFactory
+	 * 
+	 * @param database_id
+	 */
+	public void create(String databaseId) {
 		Document doc = null;
 		if (sessionFactory != null)
 			return;
 		try {
 			doc = DomUtil.getCfgXMLDocument(DBConfigurerFactory.INSTANCE
-					.getDBConfigurer(id).toXML());
+					.getDBConfigurer(databaseId).toXML());
 
 			Configuration config = new MyConfiguration().configure(doc);
 			sessionFactory = config.buildSessionFactory();
@@ -37,13 +43,13 @@ public final class HibernatePluginServer {
 		} finally {
 			if (doc != null)
 				doc.clearContent();
-			this.id = id;
+			this.databaseId = databaseId;
 		}
 	}
 
 	public SessionFactory getSessionFactory() {
 		if (sessionFactory == null)
-			create(id);
+			create(databaseId);
 		return sessionFactory;
 	}
 
@@ -61,6 +67,33 @@ public final class HibernatePluginServer {
 		Query query = null;
 		try {
 			query = session.createQuery(hql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<Object> result = null;
+		if (query == null) {
+			result = new ArrayList<Object>();
+		} else {
+			result = query.list();
+		}
+		session.getTransaction().commit();
+
+		return result;
+	}
+
+	/**
+	 * 执行SQL
+	 * 
+	 * @param sql
+	 * @return
+	 */
+	public List<Object> querySQL(String sql) {
+		Session session = getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+		SQLQuery query = null;
+		try {
+			query = session.createSQLQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -135,7 +168,6 @@ public final class HibernatePluginServer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		session.getTransaction().commit();
 		return success;
 	}
