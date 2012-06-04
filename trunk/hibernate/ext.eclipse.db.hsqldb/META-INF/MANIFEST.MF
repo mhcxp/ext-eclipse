@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Hsqldb
+Bundle-SymbolicName: ext.eclipse.db.hsqldb;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: ext.eclipse.db.hsqldb.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ ext.eclipse.hibernate;bundle-version="1.0.0"
+Eclipse-RegisterBuddy: ext.eclipse.hibernate
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/hsqldb-1.8.0.1.jar,
+ .
+Export-Package: org.hsqldb
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="ext.eclipse.ide.auth.role.impl.PermissionImpl" table="Permissions">
+		<id name="id" column="Permission_ID"/>
+		<property name="name" />
+		<property name="description" />
+	</class>
+</hibernate-mapping>
