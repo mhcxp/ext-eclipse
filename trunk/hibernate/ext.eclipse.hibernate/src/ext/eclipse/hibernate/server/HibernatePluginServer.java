@@ -27,14 +27,14 @@ public final class HibernatePluginServer {
 	 * 
 	 * @param database_id
 	 */
-	public void create(String databaseId) {
+	public void createSessionFactory(String databaseId) {
 		Document doc = null;
 		if (sessionFactory != null)
 			return;
 		try {
 			doc = DomUtil.getCfgXMLDocument(DBConfigurerFactory.INSTANCE
 					.getDBConfigurer(databaseId).toXML());
-
+			System.out.println(doc.asXML());
 			Configuration config = new MyConfiguration().configure(doc);
 			sessionFactory = config.buildSessionFactory();
 		} catch (Throwable ex) {
@@ -49,7 +49,7 @@ public final class HibernatePluginServer {
 
 	public SessionFactory getSessionFactory() {
 		if (sessionFactory == null)
-			create(databaseId);
+			createSessionFactory(databaseId);
 		return sessionFactory;
 	}
 
@@ -60,7 +60,7 @@ public final class HibernatePluginServer {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Object> query(String hql) {
+	public List<?> query(String hql) {
 		Session session = getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
@@ -70,7 +70,7 @@ public final class HibernatePluginServer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		List<Object> result = null;
+		List<?> result = null;
 		if (query == null) {
 			result = new ArrayList<Object>();
 		} else {
@@ -143,7 +143,7 @@ public final class HibernatePluginServer {
 		session.beginTransaction();
 		Object id = null;
 		try {
-			session.saveOrUpdate(bean);
+			session.save(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,5 +171,28 @@ public final class HibernatePluginServer {
 		}
 		session.getTransaction().commit();
 		return success;
+	}
+
+	public List<?> query(String hql, int offset, int length) {
+		Session session = getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+		Query query = null;
+		try {
+			query = session.createQuery(hql);
+			query.setFirstResult(offset);
+			query.setMaxResults(length);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<?> result = null;
+		if (query == null) {
+			result = new ArrayList<Object>();
+		} else {
+			result = query.list();
+		}
+		session.getTransaction().commit();
+
+		return result;
 	}
 }
