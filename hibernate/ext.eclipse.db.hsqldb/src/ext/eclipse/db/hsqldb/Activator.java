@@ -1,6 +1,6 @@
 package ext.eclipse.db.hsqldb;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 import ext.eclipse.db.server.DBServer;
@@ -8,30 +8,25 @@ import ext.eclipse.db.server.DBServer;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator implements BundleActivator {
 
-	// The plug-in ID
-	public static final String PLUGIN_ID = "ext.eclipse.db.hsqldb"; //$NON-NLS-1$
+	private static BundleContext context;
 
-	// The shared instance
-	private static Activator plugin;
+	public static final String BUNDLE_ID = "ext.eclipse.db.hsqldb";
 
-	/**
-	 * The constructor
-	 */
-	public Activator() {
+	public static BundleContext getContext() {
+		return context;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
+	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
 	 * )
 	 */
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		plugin = this;
+	public void start(BundleContext bundleContext) throws Exception {
+		Activator.context = bundleContext;
 		DBServer.start();
 	}
 
@@ -39,22 +34,11 @@ public class Activator extends AbstractUIPlugin {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
+	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
-	public void stop(BundleContext context) throws Exception {
-		plugin = null;
-		super.stop(context);
+	public void stop(BundleContext bundleContext) throws Exception {
+		Activator.context = null;
 		DBServer.stop();
-	}
-
-	/**
-	 * Returns the shared instance
-	 * 
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
 	}
 
 }

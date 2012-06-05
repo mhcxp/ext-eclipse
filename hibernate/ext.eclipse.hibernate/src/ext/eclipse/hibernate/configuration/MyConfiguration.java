@@ -36,7 +36,7 @@ public class MyConfiguration extends Configuration {
 		log.info("Configuration resource: " + resource);
 
 		try {
-			return FileLocator.openStream(Activator.getDefault().getBundle(),
+			return FileLocator.openStream(Activator.getContext().getBundle(),
 					new Path(resource), false);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class MyConfiguration extends Configuration {
 			throws MappingException {
 		try {
 
-			return addInputStream(FileLocator.openStream(Activator.getDefault()
+			return addInputStream(FileLocator.openStream(Activator.getContext()
 					.getBundle(), new Path(resourceName), false));
 		} catch (MappingException me) {
 			throw new InvalidMappingException("resource", resourceName, me);

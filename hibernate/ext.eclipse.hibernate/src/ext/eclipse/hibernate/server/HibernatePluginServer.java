@@ -59,7 +59,6 @@ public final class HibernatePluginServer {
 	 * @param hql
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public List<?> query(String hql) {
 		Session session = getSessionFactory().getCurrentSession();
 
