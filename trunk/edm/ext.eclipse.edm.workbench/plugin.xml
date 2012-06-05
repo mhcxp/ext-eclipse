@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="ext.eclipse.edm.workbench.ui.EdmPerspectiveFactory"
+            fixed="true"
+            icon="icons/edmPerspective.gif"
+            id="ext.eclipse.edm.perspective"
+            name="%edm.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="ext.eclipse.edm.views"
+            name="%edm.views">
+      </category>
+   </extension>
+
+</plugin>
