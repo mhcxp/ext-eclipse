@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.eclipse.swt.widgets.Display;
-
 import ext.eclipse.db.hsqldb.manager.DatabaseThread;
 
 public class DBServer {

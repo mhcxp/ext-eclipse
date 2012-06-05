@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.hsqldb.Server;
 import org.hsqldb.util.DatabaseManager;
-import org.hsqldb.util.SqlTool;
-import org.hsqldb.util.SqlTool.SqlToolException;
 
 public class DatabaseThread implements Runnable {
 	private String address = "localhost";

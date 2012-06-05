@@ -59,9 +59,6 @@
                <documentation>
                   
                </documentation>
-               <appinfo>
-                  <meta.attribute deprecated="true"/>
-               </appinfo>
             </annotation>
          </attribute>
          <attribute name="connection.driver_class" type="string">

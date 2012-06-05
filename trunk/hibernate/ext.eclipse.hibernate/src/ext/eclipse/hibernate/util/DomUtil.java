@@ -17,7 +17,7 @@ public class DomUtil {
 		SAXReader reader = new SAXReader();
 		try {
 			doc = reader.read(FileLocator
-					.openStream(Activator.getDefault().getBundle(), new Path(
+					.openStream(Activator.getContext().getBundle(), new Path(
 							"resource/hibernate.hbm.xml"), false));
 			Element sf = doc.getRootElement();
 			for (Object e : element.elements()) {
@@ -38,7 +38,7 @@ public class DomUtil {
 		SAXReader reader = new SAXReader();
 		try {
 			doc = reader.read(FileLocator
-					.openStream(Activator.getDefault().getBundle(), new Path(
+					.openStream(Activator.getContext().getBundle(), new Path(
 							"resource/hibernate.cfg.xml"), false));
 			Element sf = doc.getRootElement().element("session-factory");
 			for (Object e : element.elements()) {
