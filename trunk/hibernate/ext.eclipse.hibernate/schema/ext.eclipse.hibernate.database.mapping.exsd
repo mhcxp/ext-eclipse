@@ -54,6 +54,13 @@
          </appinfo>
       </annotation>
       <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="database.id" type="string">
             <annotation>
                <documentation>

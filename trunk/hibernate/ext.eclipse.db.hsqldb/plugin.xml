@@ -12,7 +12,7 @@
             current_session_context_class="thread"
             database.id="ext.eclipse.hibernate.hsqldb"
             dialect="org.hibernate.dialect.HSQLDialect"
-            hbm2ddl.auto="create"
+            hbm2ddl.auto="create-drop"
             show_sql="true">
       </property>
    </extension>

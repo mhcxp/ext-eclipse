@@ -69,12 +69,7 @@ public final class HibernatePluginServer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		List<?> result = null;
-		if (query == null) {
-			result = new ArrayList<Object>();
-		} else {
-			result = query.list();
-		}
+		List<?> result = query == null ? new ArrayList<Object>() : query.list();
 		session.getTransaction().commit();
 
 		return result;
