@@ -26,5 +26,6 @@ Export-Package: ext.eclipse.hibernate.server,
  org.hibernate,
  org.hibernate.cache,
  org.hibernate.cache.entry,
+ org.hibernate.classic,
  org.hibernate.dialect,
  org.hibernate.proxy
