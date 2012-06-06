@@ -299,7 +299,14 @@
 
    <element name="path">
       <complexType>
-         <attribute name="class" type="string">
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -309,7 +316,7 @@
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="path" type="string">
+         <attribute name="path" type="string" use="required">
             <annotation>
                <documentation>
                   映射.hbm.xml文件
