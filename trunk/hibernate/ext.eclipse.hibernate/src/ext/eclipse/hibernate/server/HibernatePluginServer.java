@@ -104,6 +104,27 @@ public final class HibernatePluginServer {
 	}
 
 	/**
+	 * 执行更新\删除SQL
+	 * 
+	 * @param sql
+	 * @return
+	 */
+	public int updateOrDeleteSQL(String sql) {
+		Session session = getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		SQLQuery query = null;
+		try {
+			query = session.createSQLQuery(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int i = query.executeUpdate();
+		session.getTransaction().commit();
+		session = null;
+		return i;
+	}
+
+	/**
 	 * 更新JavaBean，如果返回为null，则更新失败
 	 * 
 	 * @param bean
@@ -141,7 +162,6 @@ public final class HibernatePluginServer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		session.getTransaction().commit();
 		return id;
 	}
