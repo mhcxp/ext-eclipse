@@ -29,6 +29,10 @@ public class DomUtil {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		} finally {
+			if (doc != null)
+				doc.clearContent();
+			reader.resetHandlers();
 		}
 		return doc;
 	}
@@ -50,6 +54,10 @@ public class DomUtil {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		} finally {
+			if (doc != null)
+				doc.clearContent();
+			reader.resetHandlers();
 		}
 		return doc;
 	}
