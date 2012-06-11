@@ -34,7 +34,6 @@ public final class HibernatePluginServer {
 		try {
 			doc = DomUtil.getCfgXMLDocument(DBConfigurerFactory.INSTANCE
 					.getDBConfigurer(databaseId).toXML());
-			System.out.println(doc.asXML());
 			Configuration config = new MyConfiguration().configure(doc);
 			sessionFactory = config.buildSessionFactory();
 		} catch (Throwable ex) {
