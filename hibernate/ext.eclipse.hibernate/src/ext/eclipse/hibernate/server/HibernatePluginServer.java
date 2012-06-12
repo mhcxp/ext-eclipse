@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dom4j.Document;
+import org.hibernate.JDBCException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
@@ -157,11 +158,16 @@ public final class HibernatePluginServer {
 		session.beginTransaction();
 		Object id = null;
 		try {
-			session.save(bean);
+			id = session.save(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.getTransaction().commit();
+		try {
+			session.getTransaction().commit();
+		} catch (JDBCException e) {
+			id = null;
+			session.getTransaction().rollback();
+		}
 		return id;
 	}
 
