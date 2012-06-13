@@ -214,4 +214,13 @@ public final class HibernatePluginServer {
 
 		return result;
 	}
+
+	public int getCount(Class<?> clazz) {
+		Session session = getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Integer count = (Integer) session.createQuery(
+				"select count(*) from " + clazz.getSimpleName()).uniqueResult();
+		session.getTransaction().commit();
+		return count;
+	}
 }
