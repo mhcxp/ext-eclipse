@@ -24,7 +24,7 @@ public final class HibernatePluginServer {
 	private String databaseId;
 
 	/**
-	 * 根绝数据库ID创建SessionFactory
+	 * 根据数据库ID创建SessionFactory
 	 * 
 	 * @param database_id
 	 */
@@ -177,7 +177,7 @@ public final class HibernatePluginServer {
 	 * @param bean
 	 * @return
 	 */
-	public boolean drop(Object bean) {
+	public boolean delete(Object bean) {
 		Session session = getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
