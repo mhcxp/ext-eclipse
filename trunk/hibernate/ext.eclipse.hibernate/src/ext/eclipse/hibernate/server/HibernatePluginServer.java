@@ -215,10 +215,10 @@ public final class HibernatePluginServer {
 		return result;
 	}
 
-	public int getCount(Class<?> clazz) {
+	public long getCount(Class<?> clazz) {
 		Session session = getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Integer count = (Integer) session.createQuery(
+		long count = (Long) session.createQuery(
 				"select count(*) from " + clazz.getSimpleName()).uniqueResult();
 		session.getTransaction().commit();
 		return count;
