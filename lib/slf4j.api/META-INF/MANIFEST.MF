@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: slf4j-api
+Bundle-SymbolicName: slf4j.api;singleton:=true
+Bundle-Version: 1.6.5
+Bundle-Vendor: SLF4J.ORG
+Eclipse-BuddyPolicy: dependent
+Export-Package: org.slf4j,
+ org.slf4j.helpers,
+ org.slf4j.spi
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.slf4j.impl
+Bundle-ActivationPolicy: lazy

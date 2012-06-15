@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Logback Plugin
+Bundle-SymbolicName: ext.eclipse.logback;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Ext-Eclipse
+Fragment-Host: slf4j.api;bundle-version="1.6.5"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/logback-access-1.0.6.jar,
+ lib/logback-classic-1.0.6.jar,
+ lib/logback-core-1.0.6.jar,
+ .
+Require-Bundle: org.eclipse.core.runtime
+Export-Package: org.slf4j.impl
