@@ -1,0 +1,12 @@
+*demo/
+下面有logback配置的例子, 具体间logback帮助文档 http://logback.qos.ch/manual/introduction.html
+
+*使用步骤
+1)在jvm启动参数,设置logback配置文件路径
+如，-Dlogback.configurationFile=/home/dzh/temp/logback.xml
+2)从ext-eclipse项目下的lib目录，下载slf4j.api和ext.eclipse.logback2个插件
+3)使用时只需依赖slf4j.api,使用它提供的接口就行
+
+*详细说明
+
+
