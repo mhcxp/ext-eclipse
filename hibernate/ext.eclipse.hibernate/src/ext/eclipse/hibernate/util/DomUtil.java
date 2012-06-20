@@ -11,7 +11,11 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 
 import ext.eclipse.hibernate.Activator;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class DomUtil {
 	public static Document getHbmXMLDocument(Element element) {
 		Document doc = null;

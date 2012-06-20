@@ -29,3 +29,4 @@ Export-Package: ext.eclipse.hibernate.server,
  org.hibernate.classic,
  org.hibernate.dialect,
  org.hibernate.proxy
+Bundle-Vendor: ext-eclipse

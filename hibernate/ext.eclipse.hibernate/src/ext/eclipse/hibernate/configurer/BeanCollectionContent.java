@@ -1,7 +1,11 @@
 package ext.eclipse.hibernate.configurer;
 
 import org.dom4j.Element;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class BeanCollectionContent implements IHbmConfigurer {
 	public String[] attr;
 	private final String KEY = "key";

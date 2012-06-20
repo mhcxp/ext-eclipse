@@ -4,7 +4,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import ext.eclipse.hibernate.configuration.MyConfiguration;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class HibernateCommonServer {
 	private static SessionFactory sessionFactory;
 
