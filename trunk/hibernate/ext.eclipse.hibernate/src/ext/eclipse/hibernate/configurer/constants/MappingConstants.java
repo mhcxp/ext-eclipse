@@ -1,5 +1,9 @@
 package ext.eclipse.hibernate.configurer.constants;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public interface MappingConstants {
 	String EXTENSIONS_ID = "ext.eclipse.hibernate.database.mapping";
 	String MAPPING = "mapping";

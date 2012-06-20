@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dom4j.Element;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class BeanList implements IHbmConfigurer {
 	private String name;
 	private String lazy;

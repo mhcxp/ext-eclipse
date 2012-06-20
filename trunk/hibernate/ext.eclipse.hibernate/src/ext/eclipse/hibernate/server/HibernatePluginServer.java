@@ -14,7 +14,11 @@ import org.hibernate.classic.Session;
 import ext.eclipse.hibernate.configuration.MyConfiguration;
 import ext.eclipse.hibernate.configurer.DBConfigurerFactory;
 import ext.eclipse.hibernate.util.DomUtil;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public final class HibernatePluginServer {
 	public final static HibernatePluginServer INSTANCE;
 	static {
@@ -222,5 +226,21 @@ public final class HibernatePluginServer {
 				"select count(*) from " + clazz.getSimpleName()).uniqueResult();
 		session.getTransaction().commit();
 		return count;
+	}
+
+	public boolean saveOrUpdate(Object bean) {
+		Session session = getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+		boolean success = false;
+		try {
+			session.saveOrUpdate(bean);
+			success = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.getTransaction().commit();
+		return success;
 	}
 }

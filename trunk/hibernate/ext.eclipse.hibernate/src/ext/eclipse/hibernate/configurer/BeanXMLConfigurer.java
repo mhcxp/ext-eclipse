@@ -1,7 +1,11 @@
 package ext.eclipse.hibernate.configurer;
 
 import org.dom4j.Element;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class BeanXMLConfigurer implements IHbmConfigurer {
 	private String clazz;
 	private String path;

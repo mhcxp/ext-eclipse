@@ -23,6 +23,11 @@ import ext.eclipse.hibernate.configurer.BeanConfigurerFactory;
 import ext.eclipse.hibernate.configurer.IHbmConfigurer;
 import ext.eclipse.hibernate.util.DomUtil;
 
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class MyConfiguration extends Configuration {
 	/**
 	 * 

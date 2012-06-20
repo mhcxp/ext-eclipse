@@ -4,7 +4,11 @@ import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 
 import ext.eclipse.hibernate.configurer.constants.MappingConstants;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class MappingConfigurer implements IHbmConfigurer {
 	private String beanID;
 

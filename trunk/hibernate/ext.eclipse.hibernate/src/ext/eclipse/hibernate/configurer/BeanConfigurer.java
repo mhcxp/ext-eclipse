@@ -7,7 +7,11 @@ import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 
 import ext.eclipse.hibernate.configurer.constants.BeanConstants;
-
+/**
+ * 
+ * @author caiyu
+ * 
+ */
 public class BeanConfigurer implements IHbmConfigurer {
 	private String clazz;
 	private String table;
