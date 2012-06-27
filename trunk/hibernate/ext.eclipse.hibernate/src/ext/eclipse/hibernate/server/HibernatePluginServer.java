@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dom4j.Document;
+import org.hibernate.FlushMode;
 import org.hibernate.JDBCException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -14,6 +15,7 @@ import org.hibernate.classic.Session;
 import ext.eclipse.hibernate.configuration.MyConfiguration;
 import ext.eclipse.hibernate.configurer.DBConfigurerFactory;
 import ext.eclipse.hibernate.util.DomUtil;
+
 /**
  * 
  * @author caiyu
@@ -183,7 +185,7 @@ public final class HibernatePluginServer {
 	 */
 	public boolean delete(Object bean) {
 		Session session = getSessionFactory().getCurrentSession();
-
+		session.setFlushMode(FlushMode.AUTO);
 		session.beginTransaction();
 		boolean success = false;
 		try {
@@ -193,6 +195,7 @@ public final class HibernatePluginServer {
 			e.printStackTrace();
 		}
 		session.getTransaction().commit();
+		session = null;
 		return success;
 	}
 
