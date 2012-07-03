@@ -5,7 +5,6 @@ Bundle-SymbolicName: ext.eclipse.hibernate;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: ext.eclipse.hibernate.Activator
 Require-Bundle: org.eclipse.core.runtime
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Eclipse-BuddyPolicy: registered
 Bundle-ClassPath: .,
