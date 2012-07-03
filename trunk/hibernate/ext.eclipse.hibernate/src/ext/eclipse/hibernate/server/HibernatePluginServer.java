@@ -53,6 +53,10 @@ public final class HibernatePluginServer {
 		}
 	}
 
+	public void setDatabaseId(String id) {
+		this.databaseId = id;
+	}
+
 	public SessionFactory getSessionFactory() {
 		if (sessionFactory == null)
 			createSessionFactory(databaseId);

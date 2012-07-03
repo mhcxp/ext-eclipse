@@ -11,4 +11,3 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: lib/hsqldb-1.8.0.1.jar,
  .
 Export-Package: org.hsqldb
-Bundle-ActivationPolicy: lazy
