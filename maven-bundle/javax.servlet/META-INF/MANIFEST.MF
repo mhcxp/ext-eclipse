@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Eclipse Orbit
+Bundle-Name: Servlet API Source Bundle
+Bundle-SymbolicName: javax.servlet.source;singleton:=true
+Bundle-Version: 3.0.0.v201112011016
+Bundle-ManifestVersion: 2
+Export-Package: javax.servlet,
+ javax.servlet.annotation,
+ javax.servlet.descriptor,
+ javax.servlet.http
+Bundle-RequiredExecutionEnvironment: J2SE-1.5,
+ JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .

@@ -1,0 +1,53 @@
+Manifest-Version: 1.0
+Created-By: 1.5.0_11 (Sun Microsystems Inc.)
+Bundle-License: http://opensource.org/licenses/apache2.0.php; link="ht
+ tp://www.apache.org/licenses/LICENSE-2.0"; description="Apache Licens
+ e, Version 2.0"
+Export-Package: info.dmtree;version="1.0.1",info.dmtree.spi;uses:="inf
+ o.dmtree";version="1.0",info.dmtree.registry;uses:="org.osgi.framewor
+ k,info.dmtree,info.dmtree.notification";version="1.0",info.dmtree.not
+ ification.spi;uses:="info.dmtree.notification";version="1.0",info.dmt
+ ree.security;uses:="info.dmtree";version="1.0",info.dmtree.notificati
+ on;uses:="info.dmtree";version="1.0",org.osgi.application;uses:="org.
+ osgi.framework";version="1.0",org.osgi.service.application;uses:="org
+ .osgi.framework";version="1.1",org.osgi.service.blueprint.container;u
+ ses:="org.osgi.service.blueprint.reflect,org.osgi.framework";version=
+ "1.0",org.osgi.service.blueprint.reflect;version="1.0",org.osgi.servi
+ ce.cm;uses:="org.osgi.framework";version="1.3",org.osgi.service.compo
+ nent;uses:="org.osgi.framework";version="1.1",org.osgi.service.deploy
+ mentadmin.spi;uses:="org.osgi.service.deploymentadmin,org.osgi.framew
+ ork";version="1.0.1",org.osgi.service.deploymentadmin;uses:="org.osgi
+ .framework";version="1.1",org.osgi.service.device;uses:="org.osgi.fra
+ mework";version="1.1",org.osgi.service.event;uses:="org.osgi.framewor
+ k";version="1.2",org.osgi.service.http;uses:="javax.servlet.http,java
+ x.servlet";version="1.2.1",org.osgi.service.io;uses:="javax.microedit
+ ion.io";version="1.0",org.osgi.service.log;uses:="org.osgi.framework"
+ ;version="1.3",org.osgi.service.metatype;uses:="org.osgi.framework";v
+ ersion="1.1",org.osgi.service.monitor;version="1.0",org.osgi.service.
+ prefs;version="1.1.1",org.osgi.service.provisioning;version="1.2",org
+ .osgi.service.upnp;version="1.1",org.osgi.service.useradmin;uses:="or
+ g.osgi.framework";version="1.1",org.osgi.service.wireadmin;uses:="org
+ .osgi.framework";version="1.0",org.osgi.util.measurement;version="1.0
+ .1",org.osgi.util.position;uses:="org.osgi.util.measurement";version=
+ "1.0.1",org.osgi.util.cdma;uses:="org.osgi.framework,org.osgi.service
+ .condpermadmin";version="1.0",org.osgi.util.gsm;uses:="org.osgi.frame
+ work,org.osgi.service.condpermadmin";version="1.0.1",org.osgi.util.mo
+ bile;uses:="org.osgi.framework,org.osgi.service.condpermadmin";versio
+ n="1.0",org.osgi.util.tracker;uses:="org.osgi.framework";version="1.4
+ ",org.osgi.util.xml;uses:="javax.xml.parsers,org.osgi.framework";vers
+ ion="1.0.1"
+Bundle-Version: 4.2.0.200908310645
+Bundle-Copyright: Copyright (c) OSGi Alliance (2000, 2009). All Rights
+  Reserved.
+Bundle-Name: OSGi Compendium
+Bundle-Description: OSGi Service Platform Release 4 Version 4.2, Compe
+ ndium Interfaces and Classes for use in compiling bundles.
+Bundle-Vendor: OSGi Alliance
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.osgi.cmpn;singleton:=true
+DynamicImport-Package: *
+Import-Package: javax.microedition.io,
+ javax.servlet.http
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5,
+ JavaSE-1.6

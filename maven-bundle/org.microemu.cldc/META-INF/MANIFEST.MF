@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: microemu-cldc
+Bundle-SymbolicName: org.microemu.cldc;singleton:=true
+Bundle-Version: 2.0.4
+Export-Package: com.sun.cdc.io,
+ javax.microedition.io,
+ org.microemu.cldc,
+ org.microemu.microedition,
+ org.microemu.microedition.io
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5,
+ JavaSE-1.6
