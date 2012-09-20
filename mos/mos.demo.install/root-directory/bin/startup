@@ -1,0 +1,11 @@
+#!/bin/sh
+
+APP_HOME=`dirname ${PWD}`
+echo Starting from ${APP_HOME} ...
+java -Dfelix.config.properties=file:///${APP_HOME}/conf/config.properties \
+ -Dfelix.system.properties=file:///${APP_HOME}/conf/system.properties -Dapp.home=${APP_HOME} \
+ -jar ${APP_HOME}/bin/mos.felix.framework-4.0.3.jar
+
+#java -jar bin/felix.jar -b <bundle-deploy-dir>] [<bundle-cache-dir>
+#app.home 
+
