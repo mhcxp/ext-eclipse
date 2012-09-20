@@ -1,0 +1,21 @@
+结合maven开发的推荐和maven已有的开发规范，基本想法：
+1) 项目命名分隔符 
+对于bundle类型，运行于osgi环境的，使用分隔符'.'.
+对于一般jar类型模块，通常使用分隔符'-';
+其他類型的項目, 可以根據情況自定.
+在MOS開發時, 基本使用'.'
+
+以spring的aop模块为例,
+GroupId: org.springframework
+作为lib模块的artifactId: spring-aop
+作为osgi模块的artifactId: org.springframework.aop
+
+2) 项目命名
+*项目的packaging为jar,bundle等, 以mos-*方式,命名最好能直接反映出groupId 和项目作用, 即artifactId能包含groupId(这只是一般推荐,要考虑到简洁性)
+*项目packaging为pom的, 则以pom开头, 其后的一般规则是:
+接groupId,表示其他项目的父项目; 接其他方式命名的,表示为一个maven的多模块 项目.
+*项目下的包名, 最好是项目名作为前缀, 如'mos-felix-framework'项目,则其下 的包名, 以mos.felix.framework.*为宜. 
+
+3) 版本號
+一般:<主版本>.<次版本>.<增量版本>-<限定版本>
+在MOS開發時,不使用<限定版本>,如SNAPSHOT, LATEST和RELEASE等.

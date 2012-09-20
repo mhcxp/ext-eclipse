@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: mos.demo.bundle
+Bundle-SymbolicName: mos.demo.bundle;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .
+Export-Package: mos.demo.bundle,
+ mos.demo.bundle.test
+Bundle-Activator: mos.demo.bundle.Activator
+Bundle-ActivationPolicy: lazy
+Import-Package: org.osgi.framework

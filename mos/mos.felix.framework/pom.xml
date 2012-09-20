@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>mos.felix</groupId>
+	<artifactId>mos.felix.framework</artifactId>
+	<version>4.0.3</version>
+	<packaging>bundle</packaging>
+	<build>
+		<plugins>
+			<!-- <plugin> <groupId>org.apache.felix</groupId> <artifactId>maven-bundle-plugin</artifactId> 
+				<version>2.3.7</version> <extensions>true</extensions> <configuration> <instructions> 
+				<_include>META-INF/MANIFEST.MF</_include> <Include-Resource>META-INF/services=META-INF/services,src/main/resources/default.properties</Include-Resource> 
+				<Bundle-Description>OSGi R4 framework implementation.</Bundle-Description> 
+				<Bundle-Vendor>The Apache Software Foundation</Bundle-Vendor> <Export-Package>org.osgi.framework.*;-split-package:=merge-first,org.osgi.service.packageadmin,org.osgi.service.url,org.osgi.service.startlevel,org.osgi.util.tracker</Export-Package> 
+				<Private-Package>org.apache.felix.framework.*</Private-Package> <Import-Package>!*</Import-Package> 
+				</instructions> </configuration> </plugin> -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>mos.felix.framework</Bundle-SymbolicName>
+						<Bundle-Name>Apache Felix Framework</Bundle-Name>
+						<Bundle-Description>OSGi R4 framework implementation.</Bundle-Description>
+						<Bundle-Vendor>The Apache Software Foundation</Bundle-Vendor>
+						<Export-Package>org.osgi.framework.*;-split-package:=merge-first,org.osgi.service.packageadmin,org.osgi.service.url,org.osgi.service.startlevel,org.osgi.util.tracker</Export-Package>
+						<Private-Package>org.apache.felix.main,org.apache.felix.framework.*</Private-Package>
+						<Import-Package>!*</Import-Package>
+						<Main-Class>org.apache.felix.main.FelixMain</Main-Class>
+					</instructions>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.rat</groupId> <artifactId>apache-rat-plugin</artifactId> 
+				<version>0.8</version> <executions> <execution> <phase>verify</phase> <goals> 
+				<goal>check</goal> </goals> </execution> </executions> <configuration> <includes> 
+				<include>src/**</include> </includes> <excludes> <exclude>src/main/appended-resources/**</exclude> 
+				<exclude>src/**/packageinfo</exclude> <exclude>src/main/resources/META-INF/services/org.osgi.framework.launch.FrameworkFactory</exclude> 
+				<exclude>src/main/resources/org/apache/felix/framework/Felix.properties</exclude> 
+				</excludes> </configuration> </plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-eclipse-plugin</artifactId> 
+				<version>2.9</version> <configuration> <classpathContainers> <classpathContainer> 
+				org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6 
+				</classpathContainer> </classpathContainers> </configuration> </plugin> -->
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+</project>
