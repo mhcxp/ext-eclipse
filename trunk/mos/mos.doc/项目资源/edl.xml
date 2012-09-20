@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<edlVersion>1.0.0</edlVersion>
+
+	<groupId></groupId>   <!--'.'间隔 -->
+	<entityId></entityId>
+	<version></version>
+	<name></name>
+	<description></description>
+	<metadata>
+		<fileType></fileType>   <!--zip,tar,file,image -->
+		<fileEncoding></fileEncoding>   <!--gbk,utf-8 -->
+	</metadata>
+
+	<relation>
+		<dependency>
+			<entity>
+				<groupId></groupId>
+				<archiveId></archiveId>
+				<version></version>     <!--(,),[,] -->
+			</entity>
+		</dependency>
+	</relation>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
+</edl>
+
+
+<!-- ord.xml object registration definition odl.xml object description language 
+	bom.xml bean object management edl.xml entity definition language-->
