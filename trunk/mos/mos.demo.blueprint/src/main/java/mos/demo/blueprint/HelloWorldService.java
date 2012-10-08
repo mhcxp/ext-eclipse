@@ -23,17 +23,12 @@ import javax.servlet.ServletException;
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author dzh
  * @version 1.0 Sep 14, 2012 4:00:27 PM
  */
 public class HelloWorldService {
-	private static final Logger LOG = LoggerFactory
-			.getLogger(HelloWorldService.class);
-
 	private HttpService httpService;
 
 	public void setHttpService(HttpService httpService) {
@@ -57,7 +52,6 @@ public class HelloWorldService {
 				);
 		// register images as resources
 		httpService.registerResources("/images", "/images", httpContext);
-		LOG.info("HelloWorldService started");
 	}
 
 	public void stop() {

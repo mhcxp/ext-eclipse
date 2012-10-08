@@ -6,6 +6,15 @@
        http://www.springframework.org/schema/beans   
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="mytest1" class="mos.demo.blueprint.MyTest" init-method="print">
+		<property name="test" value="test1"/>
+	</bean>
+	
+	<bean id="mytest2" class="mos.demo.blueprint.MyTest" init-method="print">
+		<property name="test" value="test2"/>
+	</bean>
+
+
 	<!-- <service id="simpleServiceOsgi" ref="simpleService" interface="org.xyz.MyService" 
 		/> -->
 	<osgi:reference id="httpService" interface="org.osgi.service.http.HttpService" />
@@ -13,7 +22,13 @@
 	<bean id="helloWorldTest" class="mos.demo.blueprint.HelloWorldService"
 		init-method="start" destroy-method="stop">
 		<property name="httpService" ref="httpService" />
+		
+		<property name="test1" ref="mytest1"></property>
+		<property name="test2" ref="mytest2"></property>
 	</bean>
+	
+
+
 </beans>
 
 <!-- <blueprint xmlns=”http://www.osgi.org/xmlns/blueprint/v1.0.0”> </blueprint> -->

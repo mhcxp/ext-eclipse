@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>mos.database</groupId>
+	<artifactId>mos.database.hibernate</artifactId>
+	<version>1.0.0</version>
+	<properties>
+		<resource-path>src/main/resources</resource-path>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Activator>mos.database.hibernate.Activator</Bundle-Activator>
+						<Bundle-ClassPath>.,lib/antlr-2.7.6.jar,lib/asm-all-3.3.1.jar,lib/c3p0-0.9.1.jar,lib/cglib-2.2.2.jar,lib/commons-collections-2.1.1.jar,
+							lib/commons-logging-1.0.4.jar,lib/concurrent-1.3.4.jar,lib/dom4j-1.6.1.jar,lib/ehcache-1.2.3.jar,lib/hibernate-3.2.7.ga.jar,lib/jta-1.1.jar</Bundle-ClassPath>
+						<Include-Resource>lib=${resource-path}/lib,config=${resource-path}/config</Include-Resource>
+						<Export-Package>net.sf.cglib.proxy,org.hibernate,org.hibernate.cache,org.hibernate.cache.entry,org.hibernate.classic,org.hibernate.dialect,org.hibernate.proxy</Export-Package>
+						<Import-Package>!org.xmlpull.v1,!org.relaxng.datatype,!org.objectweb*,!org.logicalcobwebs*,!org.jboss*,!org.jaxen*,!org.gjt.xpp,!org.apache.avalon*,!org.apache.tools*,!org.apache.log*,!net.sf*,!javax.security*,!javassist*,!mos.database.hibernate*,!com.ibm*,!com.sun.msv*,!com.opensymphony.oscache*,*,org.hsqldb</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<packaging>bundle</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mos.felix</groupId>
+			<artifactId>mos.felix.framework</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+	</dependencies>
+</project>
