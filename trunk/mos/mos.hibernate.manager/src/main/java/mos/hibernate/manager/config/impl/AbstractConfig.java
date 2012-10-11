@@ -12,6 +12,11 @@ import mos.hibernate.manager.config.IHbmConfig;
 
 public abstract class AbstractConfig implements IHbmConfig {
 	protected Map<String, Object> properties;
+	protected int type = -1;
+
+	public int getType() {
+		return type;
+	}
 
 	AbstractConfig() {
 		properties = new ConcurrentHashMap<String, Object>();

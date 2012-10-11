@@ -15,7 +15,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Include-Resource>config=src/main/resources/config</Include-Resource>
-						<Database-Configuration>hsqldb;/config/demoBean.hbm.xml</Database-Configuration>
+						<Mapping-Configuration>hsqldb;/config/demoBean.hbm.xml,hsqldb;/config/Cat.hbm.xml</Mapping-Configuration>
 					</instructions>
 				</configuration>
 			</plugin>
