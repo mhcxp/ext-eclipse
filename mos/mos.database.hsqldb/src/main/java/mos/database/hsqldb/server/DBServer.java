@@ -21,7 +21,7 @@ public class DBServer {
 	public static void stop() throws Exception {
 		Class.forName("org.hsqldb.jdbcDriver");
 		Connection conn = DriverManager.getConnection(
-				"jdbc:hsqldb:hsql://localhost/mydb;ifexists=true", "sa", "");
+				"jdbc:hsqldb:hsql://localhost/hsqldb;ifexists=true", "sa", "");
 		conn.createStatement().execute("shutdown");
 		conn.close();
 	}
