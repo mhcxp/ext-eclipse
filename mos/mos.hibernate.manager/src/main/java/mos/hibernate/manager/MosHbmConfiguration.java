@@ -1,12 +1,7 @@
 package mos.hibernate.manager;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-
-import mos.hibernate.manager.config.HibernateConfigFactory;
-import mos.hibernate.manager.config.IHbmConfig;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,7 +9,6 @@ import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.hibernate.HibernateException;
-import org.hibernate.InvalidMappingException;
 import org.hibernate.MappingException;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.util.ConfigHelper;
