@@ -9,6 +9,7 @@ package mos.hibernate.manager.config;
 
 public interface IHbmConfig {
 	String P_SESSION_FACTORY_ID = "sessionFactoryId";
+	String P_CLASSNAME = "classname";
 	String P_DATABASE_FILE = "databaseFile";
 	String P_MAPPING_FILE = "mappingFile";
 

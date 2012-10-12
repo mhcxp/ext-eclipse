@@ -1,15 +1,21 @@
 package mos.hibernate.manager;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
-
-import org.dom4j.Document;
-import org.hibernate.SessionFactory;
 
 import mos.hibernate.manager.config.IHbmConfig;
 import mos.hibernate.manager.config.impl.DatabaseConfig;
 import mos.hibernate.manager.config.impl.MappingConfig;
+
+import org.dom4j.Document;
+import org.hibernate.SessionFactory;
 
 /**
  * hibernate配置单容器
@@ -21,14 +27,14 @@ import mos.hibernate.manager.config.impl.MappingConfig;
 public final class HbmConfigContainer {
 	private String sessionFatoryId;
 	private IHbmConfig databaseConfig;
-	private Set<IHbmConfig> mappingConfigSet;
+	private Map<String, IHbmConfig> mappingConfigMap;
 
 	private SessionFactory sessionFactory;
 	private boolean dirty;
 
 	HbmConfigContainer(String databaseId) {
-		mappingConfigSet = Collections
-				.synchronizedSet(new HashSet<IHbmConfig>());
+		mappingConfigMap = Collections
+				.synchronizedMap(new HashMap<String, IHbmConfig>());
 		this.sessionFatoryId = databaseId;
 		dirty = true;
 	}
@@ -80,10 +86,16 @@ public final class HbmConfigContainer {
 		 * 验证映射配置的合法性
 		 */
 		if (mappingConfig instanceof MappingConfig
-				&& !mappingConfigSet.contains(mappingConfig)
+				&& !mappingConfigMap.containsKey(mappingConfig)
 				&& sessionFatoryId.equals(mappingConfig
 						.getProperty(IHbmConfig.P_SESSION_FACTORY_ID))) {
-			mappingConfigSet.add(mappingConfig);
+			String mappingId = (String) mappingConfig
+					.getProperty(IHbmConfig.P_CLASSNAME);
+			if (mappingId == null)
+				throw new IllegalArgumentException(
+						"参数mappingConfig内容异常,属性[IHbmConfig.P_CLASSNAME]不能为null");
+			else
+				mappingConfigMap.put(mappingId, mappingConfig);
 		} else {
 			throw new IllegalArgumentException("参数mappingConfig内容异常");
 		}
@@ -92,10 +104,16 @@ public final class HbmConfigContainer {
 
 	public void removeMappingConfig(IHbmConfig mappingConfig) {
 		if (mappingConfig instanceof MappingConfig
-				&& mappingConfigSet.contains(mappingConfig)
+				&& mappingConfigMap.containsKey(mappingConfig)
 				&& sessionFatoryId.equals(mappingConfig
 						.getProperty(IHbmConfig.P_SESSION_FACTORY_ID))) {
-			mappingConfigSet.remove(mappingConfig);
+			String mappingId = (String) mappingConfig
+					.getProperty(IHbmConfig.P_CLASSNAME);
+			if (mappingId == null)
+				throw new IllegalArgumentException(
+						"参数mappingConfig内容异常,属性[IHbmConfig.P_CLASSNAME]不能为null");
+			else
+				mappingConfigMap.remove(mappingId);
 		} else {
 			throw new IllegalArgumentException("当前容器内没有符合条件的映射配置单："
 					+ mappingConfig);
@@ -103,10 +121,10 @@ public final class HbmConfigContainer {
 		dirty = true;
 	}
 
-	public Set<IHbmConfig> getMappingConfigs() {
-		if (mappingConfigSet == null)
+	public HashMap<String, IHbmConfig> getMappingConfigs() {
+		if (mappingConfigMap == null)
 			return null;
-		return new HashSet<IHbmConfig>(mappingConfigSet);
+		return new HashMap<String, IHbmConfig>(mappingConfigMap);
 	}
 
 	public SessionFactory getSessionFactory() {
@@ -120,14 +138,26 @@ public final class HbmConfigContainer {
 	}
 
 	public void dispose() {
-		if (mappingConfigSet != null) {
-			mappingConfigSet.clear();
-			mappingConfigSet = null;
+		if (mappingConfigMap != null) {
+			mappingConfigMap.clear();
+			mappingConfigMap = null;
 		}
 	}
 
 	public Document toXML() {
 		// TODO Auto-generated method stub
+		if (databaseConfig == null)
+			return null;
+		URL dbConfigFileURL = (URL) databaseConfig
+				.getProperty(IHbmConfig.P_DATABASE_FILE);
+		if (dbConfigFileURL == null)
+			return null;
+		try {
+			File dbConfigFile = new File(dbConfigFileURL.toURI());
+			System.out.println("数据库文件是否存在：" + dbConfigFile.exists());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
