@@ -10,12 +10,9 @@
 		/> -->
 	<osgi:reference id="httpService" interface="org.osgi.service.http.HttpService" />
 
-	<bean id="helloWorldTest" class="mos.hibernate.demo.servlet.HelloWorldService"
+	<bean id="demoTest" class="mos.hibernate.demo.servlet.HelloWorldService"
 		init-method="start" destroy-method="stop">
 		<property name="httpService" ref="httpService" />
-		
-		<property name="test1" ref="mytest1"></property>
-		<property name="test2" ref="mytest2"></property>
 	</bean>
 	
 

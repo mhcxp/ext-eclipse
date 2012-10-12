@@ -39,7 +39,7 @@ public final class HbmConfigContainerManager {
 	public synchronized HbmConfigContainer getHbmConfigContainer(
 			String sessionFatoryId) {
 		if (containerPool.containsKey(sessionFatoryId))
-			return containerPool.get(containerPool);
+			return containerPool.get(sessionFatoryId);
 		HbmConfigContainer container = new HbmConfigContainer(sessionFatoryId);
 		containerPool.put(sessionFatoryId, container);
 		return container;

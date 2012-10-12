@@ -41,5 +41,10 @@
 			<artifactId>mos.hibernate</artifactId>
 			<version>3.2.7.ga</version>
 		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 	</dependencies>
 </project>
