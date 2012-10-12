@@ -1,14 +1,11 @@
 package mos.hibernate.manager;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import mos.hibernate.manager.config.IHbmConfig;
 import mos.hibernate.manager.config.impl.DatabaseConfig;
@@ -56,8 +53,11 @@ public final class HbmConfigContainer {
 		if (databaseConfig != null) {
 			Object id = databaseConfig
 					.getProperty(IHbmConfig.P_SESSION_FACTORY_ID);
-			throw new IllegalArgumentException("该数据库配置单的数据库ID [" + id
-					+ "] 已被使用，请检查配置文件");
+			// throw new IllegalArgumentException("该数据库配置单的数据库ID [" + id
+			// + "] 已被使用，请检查配置文件");
+			System.out.println("该数据库配置单的数据库ID [" + id + "] 已被使用，请检查配置文件");
+			// TODO log
+			return;
 		}
 		/**
 		 * 验证databaseConfig合法性

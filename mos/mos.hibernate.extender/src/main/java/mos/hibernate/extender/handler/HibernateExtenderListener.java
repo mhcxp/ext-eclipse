@@ -11,7 +11,7 @@ import org.osgi.framework.BundleListener;
  */
 
 public class HibernateExtenderListener implements BundleListener {
-	private HibernateFactoryRegistry sessionFatotoryRegistry;
+	private HibernateExtenderRegistry sessionFatotoryRegistry;
 
 	public void bundleChanged(BundleEvent event) {
 		// TODO Auto-generated method stub
@@ -27,7 +27,7 @@ public class HibernateExtenderListener implements BundleListener {
 
 	public void activate(BundleContext context) {
 		context.addBundleListener(this);
-		sessionFatotoryRegistry = new HibernateFactoryRegistry();
+		sessionFatotoryRegistry = new HibernateExtenderRegistry();
 		for (Bundle bundle : context.getBundles()) {
 			sessionFatotoryRegistry.register(bundle);
 		}
