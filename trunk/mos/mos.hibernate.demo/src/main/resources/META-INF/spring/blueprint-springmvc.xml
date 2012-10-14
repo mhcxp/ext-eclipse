@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:osgi="http://www.eclipse.org/gemini/blueprint/schema/blueprint"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.eclipse.org/gemini/blueprint/schema/blueprint 
+       http://www.eclipse.org/gemini/blueprint/schema/blueprint/gemini-blueprint.xsd
+       http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <service id="simpleServiceOsgi" ref="simpleService" interface="org.xyz.MyService" 
+		/> -->
+	<osgi:reference id="httpService" interface="org.osgi.service.http.HttpService" />
+
+	<bean id="demoTest" class="mos.hibernate.demo.servlet.HelloWorldService"
+		init-method="start" destroy-method="stop">
+		<property name="httpService" ref="httpService" />
+	</bean>
+	
+
+
+</beans>
+
+<!-- <blueprint xmlns=”http://www.osgi.org/xmlns/blueprint/v1.0.0”> </blueprint> -->
