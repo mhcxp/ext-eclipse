@@ -40,6 +40,8 @@ public class HelloWorldService {
 	}
 
 	public void start() throws ServletException, NamespaceException {
+		System.out
+				.println("\n\n\n\n\n\n===================\n服务已经注册并运行\n===================\n\n\n\n\n\n");
 		// create a default context to share between registrations
 		final HttpContext httpContext = httpService.createDefaultHttpContext();
 		// register the hello world servlet

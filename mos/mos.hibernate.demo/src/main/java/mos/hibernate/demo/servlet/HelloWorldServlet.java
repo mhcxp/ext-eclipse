@@ -56,8 +56,18 @@ public class HelloWorldServlet extends HttpServlet {
 
 		final PrintWriter writer = response.getWriter();
 		writer.println("<html><body align='center'>");
-		writer.println("<h1>≈‰÷√¡–±Ì</h1><br/>");
-		writer.println("<h2>" + map + "</h2>");
+		writer.println("<h1>Config List</h1><br/>");
+		if (map != null) {
+			for (HbmConfigContainer container : map.values()) {
+				if (container != null) {
+					writer.println("<h2>DatabaseConfig:"
+							+ container.getDatabaseConfig() + "</h2><p>");
+					writer.println("<h2>MappingConfig:"
+							+ container.getMappingConfigs() + "</h2>");
+				}
+				container.toXML();
+			}
+		}
 		writer.println("<h1>Hello World</h1>");
 		writer.println("<img src='/images/logo.png' border='0'/>");
 		writer.println("<h1>" + getServletConfig().getInitParameter("from")
