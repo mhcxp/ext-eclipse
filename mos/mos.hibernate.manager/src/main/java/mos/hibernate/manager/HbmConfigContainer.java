@@ -12,8 +12,10 @@ import mos.hibernate.manager.config.impl.MappingConfig;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 /**
  * hibernate配置单容器
@@ -126,10 +128,29 @@ public final class HbmConfigContainer {
 	}
 
 	public SessionFactory getSessionFactory() {
-		if (dirty || sessionFactory == null) {
+		if (this.isDirty())
+			return createSessionFactory();
+		return sessionFactory;
+	}
+
+	private void close() {
+		if (sessionFactory != null)
+			sessionFactory.close();
+	}
+
+	private SessionFactory createSessionFactory() {
+		this.close();
+		if (sessionFactory == null) {
 			if (databaseConfig == null)
 				throw new RuntimeException("没有可用的数据库配置");
-			dirty = false;
+			Document doc = toXML();
+			if (doc != null) {
+				Configuration hbmConfig = new MosHbmConfiguration()
+						.configure(doc);
+				sessionFactory = hbmConfig.buildSessionFactory();
+				doc.clearContent();
+				dirty = false;
+			}
 		}
 		return sessionFactory;
 	}
@@ -141,8 +162,7 @@ public final class HbmConfigContainer {
 		}
 	}
 
-	public Document toXML() {
-		// TODO Auto-generated method stub
+	private Document toXML() {
 		if (databaseConfig == null)
 			return null;
 		URL dbConfigFileURL = (URL) databaseConfig
@@ -154,16 +174,16 @@ public final class HbmConfigContainer {
 		try {
 			reader = new SAXReader();
 			doc = reader.read(dbConfigFileURL.openStream());
+			Element root = doc.getRootElement();
 			if (mappingConfigMap != null) {
 				for (IHbmConfig mappingConfig : mappingConfigMap.values()) {
-					doc.addElement("mapping").addAttribute(
+					root.addElement("mapping").addAttribute(
 							"resource",
 							mappingConfig
 									.getProperty(IHbmConfig.P_MAPPING_FILE)
 									.toString());
 				}
 			}
-			System.out.println(doc.asXML());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {
