@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mos.hibernate.demo.CatDaoImpl;
 import mos.hibernate.manager.HbmConfigContainer;
 import mos.hibernate.manager.HbmConfigContainerManager;
 
@@ -65,21 +66,11 @@ public class HelloWorldServlet extends HttpServlet {
 					writer.println("<h2>MappingConfig:"
 							+ container.getMappingConfigs() + "</h2>");
 				}
-				container.toXML();
 			}
 		}
-		writer.println("<h1>Hello World</h1>");
-		writer.println("<img src='/images/logo.png' border='0'/>");
-		writer.println("<h1>" + getServletConfig().getInitParameter("from")
-				+ "</h1>");
-		writer.println("<p>");
-		writer.println("Served by servlet registered at: " + m_registrationPath);
-		writer.println("<br/>");
-		writer.println("Servlet Path: " + request.getServletPath());
-		writer.println("<br/>");
-		writer.println("Path Info: " + request.getPathInfo());
-		writer.println("</p>");
+		CatDaoImpl cat = new CatDaoImpl("hsqldb");
+
+		writer.println("<br/>" + cat.findByName("cat"));
 		writer.println("</body></html>");
 	}
-
 }

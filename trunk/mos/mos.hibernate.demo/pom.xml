@@ -17,7 +17,7 @@
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Include-Resource>config=src/main/resources/config,META-INF=src/main/resources/META-INF</Include-Resource>
 						<Mapping-Configuration>hsqldb;mos.hibernate.demo.DemoBean;/config/demoBean.hbm.xml,hsqldb;mos.hibernate.demo.Cat;/config/Cat.hbm.xml</Mapping-Configuration>
-						<Import-Package>*,mos.hibernate.manager</Import-Package>
+						<Import-Package>*,mos.hibernate.manager,org.hibernate;</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -43,6 +43,11 @@
 			<artifactId>org.osgi.cmpn</artifactId>
 			<version>4.2.0</version>
 			<type>bundle</type>
+		</dependency>
+		<dependency>
+			<groupId>mos.hibernate</groupId>
+			<artifactId>mos.hibernate</artifactId>
+			<version>3.2.7.ga</version>
 		</dependency>
 	</dependencies>
 </project>
