@@ -47,7 +47,7 @@ public class DatabaseThread implements Runnable {
 		args = new String[list.size()];
 		for (int i = 0; i < list.size(); i++) {
 			args[i] = (String) list.get(i);
-			System.out.println(args);
+			// System.out.println(args);
 		}
 		System.out
 				.println("\n------------------\n\nHSQLDB STARTED\n\n------------------\n");
