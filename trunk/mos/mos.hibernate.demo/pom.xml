@@ -15,7 +15,7 @@
 				<configuration>
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Include-Resource>config=src/main/resources/config</Include-Resource>
+						<Include-Resource>config=src/main/resources/config,META-INF=src/main/resources/META-INF</Include-Resource>
 						<Mapping-Configuration>hsqldb;mos.hibernate.demo.DemoBean;/config/demoBean.hbm.xml,hsqldb;mos.hibernate.demo.Cat;/config/Cat.hbm.xml</Mapping-Configuration>
 						<Import-Package>*,mos.hibernate.manager</Import-Package>
 					</instructions>
