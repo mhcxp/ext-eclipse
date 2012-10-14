@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.hibernate.SessionFactory;
+
 /**
  * hibernate配置容器管理器
  * 
@@ -33,26 +35,44 @@ public final class HbmConfigContainerManager {
 	/**
 	 * 根据databaseId获取配置单容器
 	 * 
-	 * @param sessionFatoryId
+	 * @param sessionFactoryId
 	 * @return
 	 */
 	public synchronized HbmConfigContainer getHbmConfigContainer(
-			String sessionFatoryId) {
-		if (containerPool.containsKey(sessionFatoryId))
-			return containerPool.get(sessionFatoryId);
-		HbmConfigContainer container = new HbmConfigContainer(sessionFatoryId);
-		containerPool.put(sessionFatoryId, container);
+			String sessionFactoryId) {
+		if (containerPool.containsKey(sessionFactoryId))
+			return containerPool.get(sessionFactoryId);
+		else
+			return null;
+		// HbmConfigContainer container = new
+		// HbmConfigContainer(sessionFactoryId);
+		// containerPool.put(sessionFactoryId, container);
+		// return container;
+	}
+
+	/**
+	 * 根据databaseId创建配置单容器
+	 * 
+	 * @param sessionFactoryId
+	 * @return
+	 */
+	public synchronized HbmConfigContainer createHbmConfigContainer(
+			String sessionFactoryId) {
+		if (containerPool.containsKey(sessionFactoryId))
+			return containerPool.get(sessionFactoryId);
+		HbmConfigContainer container = new HbmConfigContainer(sessionFactoryId);
+		containerPool.put(sessionFactoryId, container);
 		return container;
 	}
 
 	/**
 	 * 判断配置单容器是否存在
 	 * 
-	 * @param sessionFatoryId
+	 * @param sessionFactoryId
 	 * @return
 	 */
-	public synchronized boolean hasHbmConfigContainer(String sessionFatoryId) {
-		return containerPool.containsKey(sessionFatoryId);
+	public synchronized boolean hasHbmConfigContainer(String sessionFactoryId) {
+		return containerPool.containsKey(sessionFactoryId);
 	}
 
 	public synchronized Map<String, HbmConfigContainer> getAllHbmConfigContainer() {
@@ -61,15 +81,24 @@ public final class HbmConfigContainerManager {
 		return new HashMap<String, HbmConfigContainer>(containerPool);
 	}
 
+	public SessionFactory getSessionFactory(String sessionFactoryId) {
+		HbmConfigContainer container = this.containerPool.get(sessionFactoryId);
+		if (container == null)
+			throw new IllegalArgumentException(
+					"Cannot get SessionFactory, SessionFactory with id ["
+							+ sessionFactoryId + "] not registered");
+		return container.getSessionFactory();
+	}
+
 	/**
 	 * 销毁容器
 	 * 
-	 * @param sessionFatoryId
+	 * @param sessionFactoryId
 	 */
-	public synchronized void destroy(String sessionFatoryId) {
-		if (containerPool.containsKey(sessionFatoryId)) {
+	public synchronized void destroy(String sessionFactoryId) {
+		if (containerPool.containsKey(sessionFactoryId)) {
 			HbmConfigContainer container = containerPool
-					.remove(sessionFatoryId);
+					.remove(sessionFactoryId);
 			container.dispose();
 		}
 	}
