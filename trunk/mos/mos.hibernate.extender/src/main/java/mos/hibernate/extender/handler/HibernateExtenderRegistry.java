@@ -37,7 +37,7 @@ public final class HibernateExtenderRegistry {
 						.getProperty(IHbmConfig.P_SESSION_FACTORY_ID);
 				if (databaseId != null) {
 					HbmConfigContainer container = HbmConfigContainerManager
-							.getInstance().getHbmConfigContainer(databaseId);
+							.getInstance().createHbmConfigContainer(databaseId);
 					container.setDatabaseConfig(databaseConfig);
 				}
 			}
@@ -91,7 +91,8 @@ public final class HibernateExtenderRegistry {
 						HbmConfigContainer container = HbmConfigContainerManager
 								.getInstance()
 								.getHbmConfigContainer(databaseId);
-						container.removeMappingConfig(mappingConfig);
+						if (container != null)
+							container.removeMappingConfig(mappingConfig);
 					}
 				}
 			}
