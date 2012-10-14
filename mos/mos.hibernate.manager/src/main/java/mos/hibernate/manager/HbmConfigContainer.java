@@ -1,7 +1,6 @@
 package mos.hibernate.manager;
 
-import java.io.File;
-import java.net.URISyntaxException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,6 +11,8 @@ import mos.hibernate.manager.config.impl.DatabaseConfig;
 import mos.hibernate.manager.config.impl.MappingConfig;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.io.SAXReader;
 import org.hibernate.SessionFactory;
 
 /**
@@ -50,15 +51,12 @@ public final class HbmConfigContainer {
 	 *            实例必须为DatabaseConfig，且databaseId一致
 	 */
 	public void setDatabaseConfig(IHbmConfig databaseConfig) {
-		if (databaseConfig != null) {
-			Object id = databaseConfig
-					.getProperty(IHbmConfig.P_SESSION_FACTORY_ID);
-			// throw new IllegalArgumentException("该数据库配置单的数据库ID [" + id
-			// + "] 已被使用，请检查配置文件");
-			System.out.println("该数据库配置单的数据库ID [" + id + "] 已被使用，请检查配置文件");
-			// TODO log
-			return;
-		}
+		// if (databaseConfig != null) {
+		// Object id = databaseConfig
+		// .getProperty(IHbmConfig.P_SESSION_FACTORY_ID);
+		// // throw new IllegalArgumentException("该数据库配置单的数据库ID [" + id
+		// // + "] 已被使用，请检查配置文件");
+		// }
 		/**
 		 * 验证databaseConfig合法性
 		 */
@@ -131,7 +129,6 @@ public final class HbmConfigContainer {
 		if (dirty || sessionFactory == null) {
 			if (databaseConfig == null)
 				throw new RuntimeException("没有可用的数据库配置");
-
 			dirty = false;
 		}
 		return sessionFactory;
@@ -152,12 +149,29 @@ public final class HbmConfigContainer {
 				.getProperty(IHbmConfig.P_DATABASE_FILE);
 		if (dbConfigFileURL == null)
 			return null;
+		SAXReader reader = null;
+		Document doc = null;
 		try {
-			File dbConfigFile = new File(dbConfigFileURL.toURI());
-			System.out.println("数据库文件是否存在：" + dbConfigFile.exists());
-		} catch (URISyntaxException e) {
+			reader = new SAXReader();
+			doc = reader.read(dbConfigFileURL.openStream());
+			if (mappingConfigMap != null) {
+				for (IHbmConfig mappingConfig : mappingConfigMap.values()) {
+					doc.addElement("mapping").addAttribute(
+							"resource",
+							mappingConfig
+									.getProperty(IHbmConfig.P_MAPPING_FILE)
+									.toString());
+				}
+			}
+			System.out.println(doc.asXML());
+		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null)
+				reader.resetHandlers();
 		}
-		return null;
+		return doc;
 	}
 }
