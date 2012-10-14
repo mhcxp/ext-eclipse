@@ -174,6 +174,7 @@ public final class HbmConfigContainer {
 		try {
 			reader = new SAXReader();
 			doc = reader.read(dbConfigFileURL.openStream());
+
 			Element root = doc.getRootElement();
 			if (mappingConfigMap != null) {
 				for (IHbmConfig mappingConfig : mappingConfigMap.values()) {

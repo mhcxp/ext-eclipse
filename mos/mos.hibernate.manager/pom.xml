@@ -17,7 +17,7 @@
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Activator>mos.hibernate.manager.Activator</Bundle-Activator>
 						<Export-Package>mos.hibernate.manager,mos.hibernate.manager.dao,mos.hibernate.manager.config</Export-Package>
-						<Import-Package>*,org.hibernate,org.hibernate.cfg</Import-Package>
+						<Import-Package>*,org.hibernate,org.hibernate.cfg,org.hibernate.criterion</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>

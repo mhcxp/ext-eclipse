@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
 <session-factory>
 
 	<!-- Database connection settings -->
@@ -29,3 +30,4 @@
 	<property name="hbm2ddl.auto">create</property>
 
 </session-factory>
+</hibernate-configuration>

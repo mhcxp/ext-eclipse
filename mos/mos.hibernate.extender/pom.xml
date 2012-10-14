@@ -21,7 +21,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Activator>mos.hibernate.extender.Activator</Bundle-Activator>
-						<Import-Package>!mos.hibernate.manager.config.impl,*</Import-Package>
+						<Import-Package>!mos.hibernate.manager.config.impl,*,org.hibernate.criterion</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
