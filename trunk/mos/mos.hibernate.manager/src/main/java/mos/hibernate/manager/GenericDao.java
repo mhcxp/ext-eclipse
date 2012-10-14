@@ -13,7 +13,7 @@ import org.hibernate.criterion.Example;
  * @date 2012-10-14 обнГ4:06:03
  */
 
-public class GenericDao<T> {
+public abstract class GenericDao<T> {
 	private String sessionFactoryId;
 	private Class<T> persistentClass;
 
@@ -35,7 +35,7 @@ public class GenericDao<T> {
 		return crit.list();
 	}
 
-	private Class<T> getPersistentClass() {
+	protected Class<T> getPersistentClass() {
 		return persistentClass;
 	}
 
