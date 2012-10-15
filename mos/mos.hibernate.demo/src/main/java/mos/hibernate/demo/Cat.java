@@ -37,4 +37,17 @@ public class Cat {
 		this.color = color;
 	}
 
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID:");
+		sb.append(id);
+		sb.append("\n");
+		sb.append("Name:");
+		sb.append(name);
+		sb.append("\n");
+		sb.append("Color:");
+		sb.append(color);
+		sb.append("\n");
+		return sb.toString();
+	}
 }

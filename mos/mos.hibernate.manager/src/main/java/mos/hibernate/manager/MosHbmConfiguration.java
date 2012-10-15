@@ -26,12 +26,19 @@ public class MosHbmConfiguration extends Configuration {
 	private static final long serialVersionUID = 4590539009267996973L;
 	private static Log log = LogFactory.getLog(MosHbmConfiguration.class);
 
+	public void print(Object obj) {
+
+		System.out.println("\n\n\n=========\n\n\n" + obj
+				+ "\n\n\n==========\n\n\n");
+	}
+
 	public Configuration addResource(String resourceName)
 			throws MappingException {
 		if (resourceName.startsWith("bundle")) {
 			URL url;
 			try {
 				url = new URL(resourceName);
+
 				return addInputStream(url.openStream());
 			} catch (IOException e) {
 				e.printStackTrace();
