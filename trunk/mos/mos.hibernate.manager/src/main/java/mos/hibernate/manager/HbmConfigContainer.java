@@ -16,6 +16,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.context.ThreadLocalSessionContext;
 
 /**
  * hibernate≈‰÷√µ•»›∆˜
@@ -148,6 +149,7 @@ public final class HbmConfigContainer {
 				Configuration hbmConfig = new MosHbmConfiguration()
 						.configure(doc);
 				sessionFactory = hbmConfig.buildSessionFactory();
+				hbmConfig.setProperty("hibernate.current_session_context_class", ThreadLocalSessionContext.class.getName());
 				doc.clearContent();
 				dirty = false;
 			}
