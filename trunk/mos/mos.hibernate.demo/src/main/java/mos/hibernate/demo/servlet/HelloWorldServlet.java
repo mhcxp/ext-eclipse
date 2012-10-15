@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mos.hibernate.demo.Cat;
 import mos.hibernate.demo.CatDaoImpl;
 import mos.hibernate.manager.HbmConfigContainer;
 import mos.hibernate.manager.HbmConfigContainerManager;
@@ -70,6 +71,12 @@ public class HelloWorldServlet extends HttpServlet {
 		}
 		CatDaoImpl cat = new CatDaoImpl("hsqldb");
 
+		Cat cat1 = new Cat();
+		cat1.setColor("yellow");
+		cat1.setId(0);
+		cat1.setName("Meow");
+
+		cat.addCat(cat1);
 		writer.println("<br/>" + cat.findByName("cat"));
 		writer.println("</body></html>");
 	}
