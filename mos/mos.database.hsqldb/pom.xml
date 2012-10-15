@@ -17,11 +17,10 @@
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Activator>mos.database.hsqldb.Activator</Bundle-Activator>
 						<Bundle-ClassPath>.,lib/hsqldb-1.8.0.1.jar</Bundle-ClassPath>
-						<Include-Resource>lib=src/main/resources/lib,config=src/main/resources/config</Include-Resource>
+						<Include-Resource>lib=src/main/resources/lib</Include-Resource>
 						<Export-Package>org.hsqldb</Export-Package>
 						<Private-Package>mos.database.hsqldb*</Private-Package>
 						<Import-Package>!mos.database.hsqldb*,!sun.security.action,*</Import-Package>
-						<Database-Configuration>hsqldb;/config/hsqldb.cfg.xml</Database-Configuration>
 					</instructions>
 				</configuration>
 			</plugin>
