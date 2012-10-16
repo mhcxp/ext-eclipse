@@ -1,7 +1,9 @@
-package mos.hibernate.manager;
+package mos.hibernate.manager.dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
+import mos.hibernate.manager.HbmConfigContainerManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
