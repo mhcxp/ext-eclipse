@@ -1,6 +1,6 @@
 package mos.hibernate.demo;
 
-import mos.hibernate.manager.GenericDao;
+import mos.hibernate.manager.dao.GenericDao;
 
 import org.hibernate.Transaction;
 

@@ -1,14 +1,11 @@
 package mos.hibernate.manager;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dom4j.Attribute;
 import org.dom4j.Document;
-import org.dom4j.Element;
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -48,30 +45,30 @@ public class MosHbmConfiguration extends AnnotationConfiguration {
 		return super.addResource(resourceName);
 	}
 
-	protected void parseMappingElement(Element subelement, String name) {
-		Attribute rsrc = subelement.attribute("resource");
-		Attribute file = subelement.attribute("file");
-		Attribute jar = subelement.attribute("jar");
-		Attribute pkg = subelement.attribute("package");
-		if (rsrc != null) {
-			log.debug(name + "<-" + rsrc);
-			addResource(rsrc.getValue());
-		} else if (jar != null) {
-			log.debug(name + "<-" + jar);
-			addJar(new File(jar.getValue()));
-		} else if (pkg != null) {
-			throw new MappingException(
-					"An AnnotationConfiguration instance is required to use <mapping package=\""
-							+ pkg.getValue() + "\"/>");
-		} else {
-			if (file == null) {
-				throw new MappingException(
-						"<mapping> element in configuration specifies no attributes");
-			}
-			log.debug(name + "<-" + file);
-			addFile(file.getValue());
-		}
-	}
+	// protected void parseMappingElement(Element subelement, String name) {
+	// Attribute rsrc = subelement.attribute("resource");
+	// Attribute file = subelement.attribute("file");
+	// Attribute jar = subelement.attribute("jar");
+	// Attribute pkg = subelement.attribute("package");
+	// if (rsrc != null) {
+	// log.debug(name + "<-" + rsrc);
+	// addResource(rsrc.getValue());
+	// } else if (jar != null) {
+	// log.debug(name + "<-" + jar);
+	// addJar(new File(jar.getValue()));
+	// } else if (pkg != null) {
+	// throw new MappingException(
+	// "An AnnotationConfiguration instance is required to use <mapping package=\""
+	// + pkg.getValue() + "\"/>");
+	// } else {
+	// if (file == null) {
+	// throw new MappingException(
+	// "<mapping> element in configuration specifies no attributes");
+	// }
+	// log.debug(name + "<-" + file);
+	// addFile(file.getValue());
+	// }
+	// }
 
 	public Configuration configure(Document document) throws HibernateException {
 		log.info("configuring from XML document");

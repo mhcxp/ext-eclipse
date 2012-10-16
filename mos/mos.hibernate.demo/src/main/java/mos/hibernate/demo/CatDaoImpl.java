@@ -2,7 +2,7 @@ package mos.hibernate.demo;
 
 import java.util.List;
 
-import mos.hibernate.manager.GenericDao;
+import mos.hibernate.manager.dao.GenericDao;
 
 import org.hibernate.Criteria;
 import org.hibernate.Transaction;

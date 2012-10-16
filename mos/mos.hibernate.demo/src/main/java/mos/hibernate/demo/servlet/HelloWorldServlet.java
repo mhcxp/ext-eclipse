@@ -76,7 +76,7 @@ public class HelloWorldServlet extends HttpServlet {
 		cat1.setId(0);
 		cat1.setName("Meow");
 		cat.addCat(cat1);
-		writer.println("<br/>" + cat.findByName("cat"));
+		writer.println("<br/>" + cat.findByName("Meow"));
 
 		// DemoDaoImpl demoDao = new DemoDaoImpl("hsqldb");
 		// demoDao.findByName("");
