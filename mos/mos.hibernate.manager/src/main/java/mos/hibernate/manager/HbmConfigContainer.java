@@ -1,6 +1,5 @@
 package mos.hibernate.manager;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,12 +9,7 @@ import mos.hibernate.manager.config.IHbmConfig;
 import mos.hibernate.manager.config.impl.DatabaseConfig;
 import mos.hibernate.manager.config.impl.MappingConfig;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 /**
  * hibernate配置单容器
@@ -85,17 +79,22 @@ public final class HbmConfigContainer {
 		/**
 		 * 验证映射配置的合法性
 		 */
-		if (mappingConfig instanceof MappingConfig
-				&& !mappingConfigMap.containsKey(mappingConfig)
-				&& sessionFatoryId.equals(mappingConfig
-						.getProperty(IHbmConfig.P_SESSION_FACTORY_ID))) {
-			String mappingId = (String) mappingConfig
+		if (mappingConfig instanceof MappingConfig) {
+			Class<?> clazz = (Class<?>) mappingConfig
 					.getProperty(IHbmConfig.P_CLASSNAME);
-			if (mappingId == null)
-				throw new IllegalArgumentException(
-						"参数mappingConfig内容异常,属性[IHbmConfig.P_CLASSNAME]不能为null");
-			else
-				mappingConfigMap.put(mappingId, mappingConfig);
+			if (clazz != null
+					&& !mappingConfigMap.containsKey(clazz.getName())
+					&& sessionFatoryId.equals(mappingConfig
+							.getProperty(IHbmConfig.P_SESSION_FACTORY_ID))) {
+				String mappingId = clazz.getName();
+				if (mappingId == null) {
+					throw new IllegalArgumentException(
+							"参数mappingConfig内容异常,属性[IHbmConfig.P_CLASSNAME]不能为null");
+				} else {
+					mappingConfigMap.put(mappingId, mappingConfig);
+				}
+			} else
+				throw new IllegalArgumentException("参数mappingConfig内容异常");
 		} else {
 			throw new IllegalArgumentException("参数mappingConfig内容异常");
 		}
@@ -103,17 +102,20 @@ public final class HbmConfigContainer {
 	}
 
 	public void removeMappingConfig(IHbmConfig mappingConfig) {
-		if (mappingConfig instanceof MappingConfig
-				&& mappingConfigMap.containsKey(mappingConfig)
-				&& sessionFatoryId.equals(mappingConfig
-						.getProperty(IHbmConfig.P_SESSION_FACTORY_ID))) {
-			String mappingId = (String) mappingConfig
-					.getProperty(IHbmConfig.P_CLASSNAME);
-			if (mappingId == null)
-				throw new IllegalArgumentException(
-						"参数mappingConfig内容异常,属性[IHbmConfig.P_CLASSNAME]不能为null");
-			else
-				mappingConfigMap.remove(mappingId);
+		if (mappingConfig instanceof MappingConfig) {
+			Class<?> clazz = ((Class<?>) mappingConfig
+					.getProperty(IHbmConfig.P_CLASSNAME));
+			if (mappingConfigMap.containsKey(clazz.getName())
+					&& sessionFatoryId.equals(mappingConfig
+							.getProperty(IHbmConfig.P_SESSION_FACTORY_ID))) {
+				String mappingId = clazz.getName();
+				if (mappingId == null) {
+					throw new IllegalArgumentException(
+							"参数mappingConfig内容异常,属性[IHbmConfig.P_CLASSNAME]不能为null");
+				} else {
+					mappingConfigMap.remove(mappingId);
+				}
+			}
 		} else {
 			throw new IllegalArgumentException("当前容器内没有符合条件的映射配置单："
 					+ mappingConfig);
@@ -143,15 +145,20 @@ public final class HbmConfigContainer {
 		if (sessionFactory == null) {
 			if (databaseConfig == null)
 				throw new RuntimeException("没有可用的数据库配置");
-			Document doc = toXML();
-			if (doc != null) {
-				Configuration hbmConfig = new MosHbmConfiguration()
-						.configure(doc);
 
-				sessionFactory = hbmConfig.buildSessionFactory();
-				doc.clearContent();
-				dirty = false;
+			MosHbmConfiguration hbmConfig = (MosHbmConfiguration) new MosHbmConfiguration()
+					.configure((URL) databaseConfig
+							.getProperty(IHbmConfig.P_DATABASE_FILE));
+			// TODO
+			if (mappingConfigMap != null) {
+				for (IHbmConfig config : mappingConfigMap.values()) {
+					Class<?> persistentClass = (Class<?>) config
+							.getProperty(IHbmConfig.P_CLASSNAME);
+					hbmConfig.addAnnotatedClass(persistentClass);
+				}
 			}
+			sessionFactory = hbmConfig.buildSessionFactory();
+			dirty = false;
 		}
 		return sessionFactory;
 	}
@@ -163,38 +170,40 @@ public final class HbmConfigContainer {
 		}
 	}
 
-	private Document toXML() {
-		if (databaseConfig == null)
-			return null;
-		URL dbConfigFileURL = (URL) databaseConfig
-				.getProperty(IHbmConfig.P_DATABASE_FILE);
-		if (dbConfigFileURL == null)
-			return null;
-		SAXReader reader = null;
-		Document doc = null;
-		try {
-			reader = new SAXReader();
-			doc = reader.read(dbConfigFileURL.openStream());
-
-			Element root = doc.getRootElement();
-			if (mappingConfigMap != null) {
-				for (IHbmConfig mappingConfig : mappingConfigMap.values()) {
-					root.element("session-factory").addElement("mapping").addAttribute(
-							"resource",
-							mappingConfig
-									.getProperty(IHbmConfig.P_MAPPING_FILE)
-									.toString());
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			e.printStackTrace();
-		} finally {
-			if (reader != null)
-				reader.resetHandlers();
-		}
-
-		return doc;
-	}
+	// private Document toXML() {
+	// if (databaseConfig == null)
+	// return null;
+	// URL dbConfigFileURL = (URL) databaseConfig
+	// .getProperty(IHbmConfig.P_DATABASE_FILE);
+	// if (dbConfigFileURL == null)
+	// return null;
+	// SAXReader reader = null;
+	// Document doc = null;
+	// try {
+	// reader = new SAXReader();
+	// doc = reader.read(dbConfigFileURL.openStream());
+	//
+	// Element root = doc.getRootElement();
+	// if (mappingConfigMap != null) {
+	// for (IHbmConfig mappingConfig : mappingConfigMap.values()) {
+	// root.element("session-factory")
+	// .addElement("mapping")
+	// .addAttribute(
+	// "resource",
+	// mappingConfig.getProperty(
+	// IHbmConfig.P_MAPPING_FILE)
+	// .toString());
+	// }
+	// }
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// } catch (DocumentException e) {
+	// e.printStackTrace();
+	// } finally {
+	// if (reader != null)
+	// reader.resetHandlers();
+	// }
+	//
+	// return doc;
+	// }
 }

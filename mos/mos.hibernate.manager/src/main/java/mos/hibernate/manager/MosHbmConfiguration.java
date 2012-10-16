@@ -11,6 +11,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -19,7 +20,7 @@ import org.hibernate.cfg.Configuration;
  * @date 2012-10-11 обнГ3:40:34
  */
 
-public class MosHbmConfiguration extends Configuration {
+public class MosHbmConfiguration extends AnnotationConfiguration {
 	/**
 	 * 
 	 */

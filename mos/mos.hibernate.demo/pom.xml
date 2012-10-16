@@ -17,8 +17,9 @@
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Include-Resource>config=src/main/resources/config,META-INF=src/main/resources/META-INF</Include-Resource>
 						<Database-Configuration>hsqldb;/config/hsqldb.cfg.xml</Database-Configuration>
-						<Mapping-Configuration>hsqldb;mos.hibernate.demo.DemoBean;/config/demoBean.hbm.xml,hsqldb;mos.hibernate.demo.Cat;/config/Cat.hbm.xml</Mapping-Configuration>
-						<Import-Package>*,mos.hibernate.manager,org.hibernate</Import-Package>
+						<Mapping-Configuration>hsqldb;mos.hibernate.demo.DemoBean,hsqldb;mos.hibernate.demo.Cat</Mapping-Configuration>
+						<Import-Package>*,mos.hibernate.manager,org.hibernate,javax.persistence,org.hibernate.proxy,net.sf.cglib.proxy</Import-Package>
+						<Export-Package>mos.hibernate.demo</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
