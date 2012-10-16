@@ -83,15 +83,18 @@ public class HibernateBundleHelper {
 		String clauses[] = header.split(",");
 		for (int i = 0; i < clauses.length; i++) {
 			String parts[] = clauses[i].trim().split("\\s*;\\s*");
-			if (parts.length == 3) {
+			if (parts.length == 2) {
 				IHbmConfig mappingConfig = HibernateConfigFactory.getInstance()
 						.getMappingConfig();
 				mappingConfig.setProperty(IHbmConfig.P_SESSION_FACTORY_ID,
 						parts[0].trim());
-				mappingConfig.setProperty(IHbmConfig.P_CLASSNAME, parts[1]);
-				URL url = bundle.getResource(parts[2].trim());
-				mappingConfig.setProperty(IHbmConfig.P_MAPPING_FILE, url);
-				mappingConfigSet.add(mappingConfig);
+
+				try {
+					Class<?> clazz = bundle.loadClass(parts[1]);
+					mappingConfig.setProperty(IHbmConfig.P_CLASSNAME, clazz);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 

@@ -42,8 +42,8 @@
 	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/ehcache-1.2.3.jar"/>
 	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/hibernate-3.2.7.ga.jar" sourcepath="F:/jars/hibernate-3.2.7/hibernate-3.2.7.ga-sources.jar"/>
 	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/hibernate-annotations.jar"/>
-	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/hibernate-annotations.jar" sourcepath="F:/jars/hibernate-annotations-3.3.0.ga/hibernate-annotations-3.3.0.ga-sources.jar"/>
+	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/hibernate-commons-annotations.jar" sourcepath="F:/jars/hibernate-commons-annotations-3.3.0.ga/hibernate-commons-annotations-3.3.0.ga-sources.jar"/>
 	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/hibernate-entitymanager.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

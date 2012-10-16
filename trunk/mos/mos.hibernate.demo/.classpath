@@ -33,5 +33,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/hibernate-3.2.7.ga.jar" sourcepath="F:/jars/hibernate-3.2.7/hibernate-3.2.7.ga-sources.jar"/>
+	<classpathentry kind="lib" path="/mos.hibernate/src/main/resources/lib/ejb3-persistence.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
