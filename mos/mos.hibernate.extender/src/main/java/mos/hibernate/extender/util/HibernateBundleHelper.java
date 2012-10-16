@@ -79,7 +79,6 @@ public class HibernateBundleHelper {
 		if (header == null)
 			return null;
 		Set<IHbmConfig> mappingConfigSet = new HashSet<IHbmConfig>();
-
 		String clauses[] = header.split(",");
 		for (int i = 0; i < clauses.length; i++) {
 			String parts[] = clauses[i].trim().split("\\s*;\\s*");
@@ -92,6 +91,7 @@ public class HibernateBundleHelper {
 				try {
 					Class<?> clazz = bundle.loadClass(parts[1]);
 					mappingConfig.setProperty(IHbmConfig.P_CLASSNAME, clazz);
+					mappingConfigSet.add(mappingConfig);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
