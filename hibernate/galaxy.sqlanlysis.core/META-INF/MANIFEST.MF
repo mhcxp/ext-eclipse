@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Core
+Bundle-SymbolicName: galaxy.sqlanlysis.core
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: galaxy.sqlanlysis.core.Activator
+Require-Bundle: org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: galaxy.sqlanlysis.core.contant,
+ galaxy.sqlanlysis.core.dialect,
+ galaxy.sqlanlysis.core.model
