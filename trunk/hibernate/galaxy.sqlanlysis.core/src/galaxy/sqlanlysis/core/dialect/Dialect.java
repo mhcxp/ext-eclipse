@@ -6,23 +6,15 @@ import galaxy.sqlanlysis.core.dialect.layout.AnylsisSqlSorter;
 import galaxy.sqlanlysis.core.dialect.layout.DefaultSqlLayoutAdapter;
 import galaxy.sqlanlysis.core.dialect.layout.IAdapter;
 import galaxy.sqlanlysis.core.dialect.layout.IAnlysisSqlLayout;
-import galaxy.sqlanlysis.core.dialect.layout.IDeleteLayout;
-import galaxy.sqlanlysis.core.dialect.layout.IInsertLayout;
-import galaxy.sqlanlysis.core.dialect.layout.ISelectLayout;
-import galaxy.sqlanlysis.core.dialect.layout.IUpdateLayout;
 import galaxy.sqlanlysis.core.exception.AnlysisSqlException;
 import galaxy.sqlanlysis.core.exception.IllegalModelTypeException;
 import galaxy.sqlanlysis.core.function.SQLFunction;
-import galaxy.sqlanlysis.core.model.AliasModel;
 import galaxy.sqlanlysis.core.model.ColumnModel;
 import galaxy.sqlanlysis.core.model.ColumnModelGroup;
-import galaxy.sqlanlysis.core.model.DeleteModel;
+import galaxy.sqlanlysis.core.model.ConditionModelGroup;
 import galaxy.sqlanlysis.core.model.FunctionModel;
 import galaxy.sqlanlysis.core.model.IAnlysisSqlModel;
-import galaxy.sqlanlysis.core.model.InsertModel;
-import galaxy.sqlanlysis.core.model.SelectModel;
 import galaxy.sqlanlysis.core.model.TableModel;
-import galaxy.sqlanlysis.core.model.UpdateModel;
 import galaxy.sqlanlysis.core.model.ValueGroup;
 import galaxy.sqlanlysis.core.model.ValueModel;
 
@@ -39,16 +31,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class Dialect {
 
-	public final static String INSERT_HEAD = "INSERT INTO";
-	public final static String SELECT_HEAD = "SELECT";
-	public final static String DELETE_HEAD = "DELETE";
-	public final static String UPDATE_HEAD = "UPDATE";
-
 	public final static String WHERE = "WHERE";
 	public final static String VALUES = "VALUES";
 	public final static String FROM = "FROM";
 	public final static String GROUP_BY = "GROUP BY";
 	public final static String ORDER_BY = "ORDER BY";
+
+	public final static String DISTINCT = "DISTINCT";
 
 	// private final TypeNames typeNames = new TypeNames();
 	private final DefaultSqlLayoutAdapter defaultSqlLayout = new DefaultSqlLayoutAdapter();
@@ -79,6 +68,7 @@ public abstract class Dialect {
 	 */
 	public void unregisterAnlysisSqlModel() {
 		this.model = null;
+		this.sqlLayout = null;
 	}
 
 	/**
@@ -101,17 +91,7 @@ public abstract class Dialect {
 			adapter = defaultSqlLayout;
 		else
 			adapter = sqlLayoutAdapter;
-		Class<?> clazz = null;
-		if (modelClazz == SelectModel.class) {
-			clazz = ISelectLayout.class;
-		} else if (modelClazz == InsertModel.class) {
-			clazz = IInsertLayout.class;
-		} else if (modelClazz == UpdateModel.class) {
-			clazz = IUpdateLayout.class;
-		} else if (modelClazz == DeleteModel.class) {
-			clazz = IDeleteLayout.class;
-		}
-		return (IAnlysisSqlLayout) adapter.getAdapter(clazz);
+		return (IAnlysisSqlLayout) adapter.getAdapter(modelClazz);
 	}
 
 	/**
@@ -136,20 +116,21 @@ public abstract class Dialect {
 		String value = null;
 		switch (key) {
 		case AnlysisSqlKeys.HEAD:
+			// TODO
+			value = analyzeHeadSql();
+			break;
 		case AnlysisSqlKeys.DISTINCT:
-			value = String.valueOf(getElementSql(key));
+			value = DISTINCT;
 			break;
 		case AnlysisSqlKeys.COLUMNS:
-			ColumnModelGroup columns = (ColumnModelGroup) model
-					.getElement(AnlysisSqlKeys.COLUMNS);
+			ColumnModelGroup columns = (ColumnModelGroup) getStatementElement(AnlysisSqlKeys.COLUMNS);
 			value = analyzeColumnsSql(columns);
 			break;
 		case AnlysisSqlKeys.TARGET_TABLE:
 			value = analyzeTargetTableSql();
 			break;
 		case AnlysisSqlKeys.VALUES:
-			ValueGroup values = (ValueGroup) model
-					.getElement(AnlysisSqlKeys.VALUES);
+			ValueGroup values = (ValueGroup) getStatementElement(AnlysisSqlKeys.VALUES);
 			value = analyzeValuesSql(values);
 			break;
 		case AnlysisSqlKeys.LIMIT:
@@ -157,7 +138,8 @@ public abstract class Dialect {
 			break;
 		case AnlysisSqlKeys.WHERE:
 			// TODO
-			
+			ConditionModelGroup conditions = (ConditionModelGroup) getStatementElement(AnlysisSqlKeys.WHERE);
+			value = analyzeConditionsSql(conditions);
 			break;
 		case AnlysisSqlKeys.GROUP_BY:
 			// TODO
@@ -165,11 +147,26 @@ public abstract class Dialect {
 		case AnlysisSqlKeys.ORDER_BY:
 			// TODO
 			break;
-			
+
 		default:
 			break;
 		}
 		return value;
+	}
+
+	/**
+	 * 分析条件语句
+	 * 
+	 * @param conditions
+	 * @return
+	 */
+	protected String analyzeConditionsSql(ConditionModelGroup conditions) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private String analyzeHeadSql() {
+		return sqlLayout.render(null, AnlysisSqlKeys.HEAD);
 	}
 
 	/**
@@ -180,8 +177,7 @@ public abstract class Dialect {
 	 */
 	private String analyzeValuesSql(ValueGroup values) {
 		// TODO 判比对字段列表长度和值列长度
-		ColumnModelGroup columns = (ColumnModelGroup) model
-				.getElement(AnlysisSqlKeys.COLUMNS);
+		ColumnModelGroup columns = (ColumnModelGroup) getStatementElement(AnlysisSqlKeys.COLUMNS);
 		if (columns != null && columns.getSize() != 0
 				&& columns.getSize() != values.getSize()) {
 			throw new IllegalModelTypeException("字段列表长度[" + columns.getSize()
@@ -206,17 +202,12 @@ public abstract class Dialect {
 	 * @return
 	 */
 	protected String analyzeTargetTableSql() {
-		TableModel tableModel = (TableModel) model
-				.getElement(AnlysisSqlKeys.TARGET_TABLE);
+		TableModel tableModel = (TableModel) getStatementElement(AnlysisSqlKeys.TARGET_TABLE);
 		if (tableModel == null)
 			throw new IllegalModelTypeException();
-		String name = tableModel.getName();
-		AliasModel alias = tableModel.getAlias();
-		SqlBuffer buffer = new SqlBuffer();
-		buffer.append(name);
-		if (alias != null)
-			buffer.append(alias.toString());
-		return buffer.getSql();
+		List<TableModel> args = new ArrayList<TableModel>();
+		args.add(tableModel);
+		return sqlLayout.render(args, AnlysisSqlKeys.TARGET_TABLE);
 	}
 
 	/**
@@ -264,7 +255,7 @@ public abstract class Dialect {
 		return sqlFunctions.get(name);
 	}
 
-	protected Object getElementSql(int key) {
+	protected Object getStatementElement(int key) {
 		return model.getElement(key);
 	}
 }

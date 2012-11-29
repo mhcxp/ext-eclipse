@@ -1,5 +1,10 @@
 package galaxy.sqlanlysis.core.dialect.layout;
 
+import galaxy.sqlanlysis.core.model.DeleteModel;
+import galaxy.sqlanlysis.core.model.InsertModel;
+import galaxy.sqlanlysis.core.model.SelectModel;
+import galaxy.sqlanlysis.core.model.UpdateModel;
+
 /**
  * 默认的SQL布局
  * 
@@ -46,13 +51,13 @@ public class DefaultSqlLayoutAdapter implements IAdapter {
 	public IAnlysisSqlLayout getAdapter(Object obj) {
 		if (obj instanceof Class<?>) {
 			Class<?> clazz = (Class<?>) obj;
-			if (clazz == ISelectLayout.class) {
+			if (clazz == SelectModel.class) {
 				return selectLayout;
-			} else if (clazz == IDeleteLayout.class) {
+			} else if (clazz == DeleteModel.class) {
 				return deleteLayout;
-			} else if (clazz == IInsertLayout.class) {
+			} else if (clazz == InsertModel.class) {
 				return insertLayout;
-			} else if (clazz == IUpdateLayout.class) {
+			} else if (clazz == UpdateModel.class) {
 				return updateLayout;
 			}
 		}

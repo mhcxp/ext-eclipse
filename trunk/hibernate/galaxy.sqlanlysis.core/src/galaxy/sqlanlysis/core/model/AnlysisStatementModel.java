@@ -8,5 +8,11 @@ package galaxy.sqlanlysis.core.model;
  */
 public abstract class AnlysisStatementModel extends AbstractAnlysisSqlModel {
 	AnlysisStatementModel() {
+		init();
 	}
+
+	/**
+	 * ≥ı ºªØ
+	 */
+	protected abstract void init();
 }
