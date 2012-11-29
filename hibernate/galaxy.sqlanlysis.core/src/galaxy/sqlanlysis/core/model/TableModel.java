@@ -9,9 +9,17 @@ package galaxy.sqlanlysis.core.model;
 public class TableModel extends SqlElementModel {
 	private AliasModel alias;
 
-	public AliasModel getAlias() {
-		return null;
+	public TableModel(String name) {
+		setName(name);
 	}
-	
-	
+
+	public AliasModel getAlias() {
+		return alias;
+	}
+
+	public boolean hasAlias() {
+		return alias != null && alias.getName() != null
+				&& !alias.getName().trim().equals("");
+	}
+
 }

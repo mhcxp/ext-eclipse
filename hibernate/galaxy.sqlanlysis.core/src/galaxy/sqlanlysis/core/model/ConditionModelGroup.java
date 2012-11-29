@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 模型组
+ * 查询条件集合
  * 
  * @author caiyu
- * @date 2012-11-26
+ * @date 2012-11-28
  */
-public class ColumnModelGroup extends SqlElementModel {
-	private List<ColumnModel> children = new ArrayList<ColumnModel>();
+public class ConditionModelGroup extends SqlElementModel {
+	private List<ConditionModel> children = new ArrayList<ConditionModel>();
 
-	public void addChild(ColumnModel model, int index) {
+	public void addChild(ConditionModel model, int index) {
 		children.add(index, model);
 	}
 
@@ -20,7 +20,7 @@ public class ColumnModelGroup extends SqlElementModel {
 		children.remove(index);
 	}
 
-	public ColumnModel getChild(int index) {
+	public ConditionModel getChild(int index) {
 		return children.get(index);
 	}
 

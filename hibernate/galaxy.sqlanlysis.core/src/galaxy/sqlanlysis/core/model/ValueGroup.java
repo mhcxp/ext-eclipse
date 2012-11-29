@@ -9,7 +9,7 @@ import java.util.List;
  * @author caiyu
  * @date 2012-11-27
  */
-public class ValueGroup extends AnlysisStatementModel {
+public class ValueGroup extends SqlElementModel {
 	private List<ValueModel> values = new ArrayList<ValueModel>();
 
 	public void addValue(ValueModel model, int index) {
