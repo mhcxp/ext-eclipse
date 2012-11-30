@@ -18,6 +18,7 @@ import galaxy.sqlanlysis.core.model.TableModel;
 import galaxy.sqlanlysis.core.model.ValueGroup;
 import galaxy.sqlanlysis.core.model.ValueModel;
 
+import java.beans.Expression;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +47,14 @@ public abstract class Dialect {
 	protected IAnlysisSqlLayout sqlLayout;
 
 	private Map<String, SQLFunction> sqlFunctions = new ConcurrentHashMap<String, SQLFunction>();
+	private Map<Expression, String> sqlExpressions = new ConcurrentHashMap<Expression, String>();
 
 	protected void registerFunction(String name, SQLFunction function) {
 		sqlFunctions.put(name, function);
+	}
+
+	protected void registerExpression(Expression exp, String dialectExp) {
+		sqlExpressions.put(exp, dialectExp);
 	}
 
 	/**
@@ -107,7 +113,10 @@ public abstract class Dialect {
 		AnylsisSqlSorter sorter = sqlLayout.getSorter();
 		SqlBuffer sb = new SqlBuffer();
 		for (int key : sorter.getSort()) {
-			sb.append(getValue(key));
+			String value = getValue(key);
+			if (value == null)
+				continue;
+			sb.append(value);
 		}
 		return sb.getSql();
 	}
@@ -116,7 +125,6 @@ public abstract class Dialect {
 		String value = null;
 		switch (key) {
 		case AnlysisSqlKeys.HEAD:
-			// TODO
 			value = analyzeHeadSql();
 			break;
 		case AnlysisSqlKeys.DISTINCT:
@@ -162,6 +170,8 @@ public abstract class Dialect {
 	 */
 	protected String analyzeConditionsSql(ConditionModelGroup conditions) {
 		// TODO Auto-generated method stub
+		if (conditions == null)
+			return null;
 		return null;
 	}
 
@@ -176,11 +186,10 @@ public abstract class Dialect {
 	 * @return
 	 */
 	private String analyzeValuesSql(ValueGroup values) {
-		// TODO 判比对字段列表长度和值列长度
 		ColumnModelGroup columns = (ColumnModelGroup) getStatementElement(AnlysisSqlKeys.COLUMNS);
 		if (columns != null && columns.getSize() != 0
 				&& columns.getSize() != values.getSize()) {
-			throw new IllegalModelTypeException("字段列表长度[" + columns.getSize()
+			throw new AnlysisSqlException("字段列表长度[" + columns.getSize()
 					+ "]和值列表[" + values.getSize() + "]长度不一致");
 		}
 		int size = values.getSize();
@@ -193,6 +202,7 @@ public abstract class Dialect {
 			else
 				buffer.appendWithComma(content);
 		}
+
 		return buffer.getSql();
 	}
 
@@ -255,7 +265,18 @@ public abstract class Dialect {
 		return sqlFunctions.get(name);
 	}
 
+	public String getSQLExpression(Expression exp) {
+		return sqlExpressions.get(exp);
+	}
+
 	protected Object getStatementElement(int key) {
 		return model.getElement(key);
+	}
+
+	public String render(List<? extends Object> args, int key) {
+		if (sqlLayout == null) {
+			throw new IllegalModelTypeException("方言未注册模型");
+		}
+		return sqlLayout.render(args, key);
 	}
 }
