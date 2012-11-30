@@ -16,7 +16,7 @@ public final class SqlBuffer {
 	 */
 	public void append(String content) {
 		if (content == null)
-			content = "null";
+			return;
 		buffer.append(content.trim());
 		buffer.append(" ");
 	}
@@ -34,7 +34,7 @@ public final class SqlBuffer {
 	}
 
 	public String getSql() {
-		return buffer.toString().trim();
+		return buffer.toString();
 	}
 
 }

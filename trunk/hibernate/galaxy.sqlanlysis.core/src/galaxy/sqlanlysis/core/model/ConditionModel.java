@@ -1,5 +1,7 @@
 package galaxy.sqlanlysis.core.model;
 
+import galaxy.sqlanlysis.core.model.expression.Expression;
+
 /**
  * 查询条件模型
  * 
@@ -9,6 +11,15 @@ package galaxy.sqlanlysis.core.model;
 public class ConditionModel extends SqlElementModel {
 	private ColumnModel column;
 	private ValueModel value;
+	private Expression expression;
+
+	public Expression getExpression() {
+		return expression;
+	}
+
+	public void setExpression(Expression expression) {
+		this.expression = expression;
+	}
 
 	public ColumnModel getColumn() {
 		return column;
