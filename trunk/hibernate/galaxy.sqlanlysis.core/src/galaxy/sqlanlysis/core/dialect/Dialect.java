@@ -9,14 +9,14 @@ import galaxy.sqlanlysis.core.dialect.layout.IAnlysisSqlLayout;
 import galaxy.sqlanlysis.core.exception.AnlysisSqlException;
 import galaxy.sqlanlysis.core.exception.IllegalModelTypeException;
 import galaxy.sqlanlysis.core.function.SQLFunction;
-import galaxy.sqlanlysis.core.model.ColumnModel;
-import galaxy.sqlanlysis.core.model.ColumnModelGroup;
-import galaxy.sqlanlysis.core.model.ConditionModelGroup;
-import galaxy.sqlanlysis.core.model.FunctionModel;
 import galaxy.sqlanlysis.core.model.IAnlysisSqlModel;
 import galaxy.sqlanlysis.core.model.TableModel;
-import galaxy.sqlanlysis.core.model.ValueGroup;
-import galaxy.sqlanlysis.core.model.ValueModel;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
+import galaxy.sqlanlysis.core.model.column.ColumnModelGroup;
+import galaxy.sqlanlysis.core.model.column.FunctionModel;
+import galaxy.sqlanlysis.core.model.condition.ConditionModelGroup;
+import galaxy.sqlanlysis.core.model.value.ValueGroup;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 import java.beans.Expression;
 import java.util.ArrayList;
@@ -257,7 +257,7 @@ public abstract class Dialect {
 				+ column.getAlias() : column.getName();
 	}
 
-	protected String getAsToken() {
+	public String getAsToken() {
 		return " AS ";
 	}
 

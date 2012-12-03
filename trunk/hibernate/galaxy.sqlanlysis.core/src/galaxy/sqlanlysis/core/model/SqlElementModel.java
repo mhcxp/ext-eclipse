@@ -7,7 +7,8 @@ package galaxy.sqlanlysis.core.model;
  * @date 2012-11-14
  */
 public abstract class SqlElementModel extends AbstractAnlysisSqlModel {
-	protected final static int NAME = 0x013;
+	protected final static int NAME = 0x1011;
+	protected final static int ALIAS = 0x1012;
 
 	/**
 	 * 获得元素名称

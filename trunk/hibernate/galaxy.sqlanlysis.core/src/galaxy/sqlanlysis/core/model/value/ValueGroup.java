@@ -1,4 +1,6 @@
-package galaxy.sqlanlysis.core.model;
+package galaxy.sqlanlysis.core.model.value;
+
+import galaxy.sqlanlysis.core.model.SqlElementModel;
 
 import java.util.ArrayList;
 import java.util.List;

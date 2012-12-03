@@ -1,6 +1,8 @@
 package galaxy.sqlanlysis.core.model.expression;
 
 import galaxy.sqlanlysis.core.dialect.Dialect;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 /**
  * 
@@ -21,7 +23,7 @@ public class NullExpression implements Expression {
 	}
 
 	@Override
-	public String toSqlString(Dialect dialect) {
+	public String toSqlString(Dialect dialect,ColumnModel column,ValueModel value) {
 		return this.propertyName + " IS NULL";
 	}
 

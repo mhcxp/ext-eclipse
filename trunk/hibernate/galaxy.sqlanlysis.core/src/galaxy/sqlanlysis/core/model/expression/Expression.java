@@ -2,6 +2,8 @@
 package galaxy.sqlanlysis.core.model.expression;
 
 import galaxy.sqlanlysis.core.dialect.Dialect;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 import java.io.Serializable;
 
@@ -13,6 +15,6 @@ import java.io.Serializable;
  */
 public interface Expression extends Serializable {
 
-	public String toSqlString(Dialect dialect);
+	String toSqlString(Dialect dialect, ColumnModel column, ValueModel value);
 
 }

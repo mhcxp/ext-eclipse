@@ -2,6 +2,8 @@ package galaxy.sqlanlysis.core.model.expression;
 
 import galaxy.sqlanlysis.core.dialect.Dialect;
 import galaxy.sqlanlysis.core.model.SelectModel;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 /**
  * @author caiyu
@@ -23,7 +25,8 @@ public abstract class AbstractEmptinessExpression implements Expression {
 
 	protected abstract boolean excludeEmpty();
 
-	public final String toSqlString(Dialect dialect) {
+	public final String toSqlString(Dialect dialect, ColumnModel column,
+			ValueModel value) {
 		String innerSelect = null;
 		if (subquery instanceof SelectModel) {
 			// TODO
