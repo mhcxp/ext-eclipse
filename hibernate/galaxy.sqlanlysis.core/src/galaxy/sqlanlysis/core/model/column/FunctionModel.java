@@ -1,4 +1,4 @@
-package galaxy.sqlanlysis.core.model;
+package galaxy.sqlanlysis.core.model.column;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,6 +2,8 @@ package galaxy.sqlanlysis.core.model.expression;
 
 import galaxy.sqlanlysis.core.dialect.Dialect;
 import galaxy.sqlanlysis.core.helper.StringHelper;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class InExpression implements Expression {
 	}
 
 	@Override
-	public String toSqlString(Dialect dialect) {
+	public String toSqlString(Dialect dialect,ColumnModel column,ValueModel value) {
 		// TODO Auto-generated method stub
 		int size = values.length;
 		List<String> list = new ArrayList<String>();

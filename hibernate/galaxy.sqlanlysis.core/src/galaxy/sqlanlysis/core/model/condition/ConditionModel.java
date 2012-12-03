@@ -1,6 +1,11 @@
-package galaxy.sqlanlysis.core.model;
+package galaxy.sqlanlysis.core.model.condition;
 
+import galaxy.sqlanlysis.core.dialect.Dialect;
+import galaxy.sqlanlysis.core.exception.AnlysisSqlException;
+import galaxy.sqlanlysis.core.model.SqlElementModel;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
 import galaxy.sqlanlysis.core.model.expression.Expression;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 /**
  * 查询条件模型
@@ -35,5 +40,18 @@ public class ConditionModel extends SqlElementModel {
 
 	public void setValue(ValueModel value) {
 		this.value = value;
+	}
+
+	/**
+	 * 根据方言交付内容
+	 * 
+	 * @param dialect
+	 * @return
+	 */
+	public String render(Dialect dialect) {
+		if (dialect == null || expression == null) {
+			throw new AnlysisSqlException("内容异常");
+		}
+		return expression.toSqlString(dialect, column, value);
 	}
 }

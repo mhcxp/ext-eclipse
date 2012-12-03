@@ -1,4 +1,4 @@
-package galaxy.sqlanlysis.core.model;
+package galaxy.sqlanlysis.core.model.column;
 
 /**
  * @author caiyu

@@ -2,6 +2,8 @@ package galaxy.sqlanlysis.core.model.expression;
 
 import galaxy.sqlanlysis.core.dialect.Dialect;
 import galaxy.sqlanlysis.core.dialect.MySQLDialect;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 /**
  * NOT±Ì¥Ô Ω
@@ -21,11 +23,12 @@ public class NotExpression implements Expression {
 	}
 
 	@Override
-	public String toSqlString(Dialect dialect) {
+	public String toSqlString(Dialect dialect, ColumnModel column,
+			ValueModel value) {
 		if (dialect instanceof MySQLDialect) {
-			return "not (" + expression.toSqlString(dialect) + ')';
+			return "not (" + expression.toSqlString(dialect, column, value) + ')';
 		} else {
-			return "not " + expression.toSqlString(dialect);
+			return "not " + expression.toSqlString(dialect, column, value);
 		}
 	}
 

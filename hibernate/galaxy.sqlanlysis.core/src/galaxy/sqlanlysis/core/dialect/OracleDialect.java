@@ -140,7 +140,7 @@ public class OracleDialect extends Dialect {
 				DataTypeConstant.STRING));
 	}
 
-	protected String getAsToken() {
+	public String getAsToken() {
 		return " ";
 	}
 }

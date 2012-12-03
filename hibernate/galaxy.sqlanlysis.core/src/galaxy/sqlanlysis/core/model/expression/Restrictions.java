@@ -18,114 +18,114 @@ public class Restrictions {
 	/**
 	 * Apply an "equal" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param value
 	 * @return Criterion
 	 */
-	public static SimpleExpression eq(String propertyName, Object value) {
-		return new SimpleExpression(propertyName, value, "=");
+	public static SimpleExpression eq(int columnKey, int valueKey) {
+		return new SimpleExpression(columnKey, valueKey, "=");
 	}
 
 	/**
 	 * Apply a "not equal" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param value
 	 * @return Criterion
 	 */
-	public static SimpleExpression ne(String propertyName, Object value) {
-		return new SimpleExpression(propertyName, value, "<>");
+	public static SimpleExpression ne(int columnKey, int valueKey) {
+		return new SimpleExpression(columnKey, valueKey, "<>");
 	}
 
 	/**
 	 * Apply a "like" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param value
 	 * @return Criterion
 	 */
-	public static SimpleExpression like(String propertyName, Object value) {
-		return new SimpleExpression(propertyName, value, " like ");
+	public static SimpleExpression like(int columnKey, int valueKey) {
+		return new SimpleExpression(columnKey, valueKey, " like ");
 	}
 
 	/**
 	 * Apply a "greater than" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param value
 	 * @return Criterion
 	 */
-	public static SimpleExpression gt(String propertyName, Object value) {
-		return new SimpleExpression(propertyName, value, ">");
+	public static SimpleExpression gt(int columnKey, int valueKey) {
+		return new SimpleExpression(columnKey, valueKey, ">");
 	}
 
 	/**
 	 * Apply a "less than" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param value
 	 * @return Criterion
 	 */
-	public static SimpleExpression lt(String propertyName, Object value) {
-		return new SimpleExpression(propertyName, value, "<");
+	public static SimpleExpression lt(int columnKey, int valueKey) {
+		return new SimpleExpression(columnKey, valueKey, "<");
 	}
 
 	/**
 	 * Apply a "less than or equal" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param value
 	 * @return Criterion
 	 */
-	public static SimpleExpression le(String propertyName, Object value) {
-		return new SimpleExpression(propertyName, value, "<=");
+	public static SimpleExpression le(int columnKey, int valueKey) {
+		return new SimpleExpression(columnKey, valueKey, "<=");
 	}
 
 	/**
 	 * Apply a "greater than or equal" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param value
 	 * @return Criterion
 	 */
-	public static SimpleExpression ge(String propertyName, Object value) {
-		return new SimpleExpression(propertyName, value, ">=");
+	public static SimpleExpression ge(int columnKey, int valueKey) {
+		return new SimpleExpression(columnKey, valueKey, ">=");
 	}
 
 	/**
 	 * Apply a "between" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param lo
 	 *            value
 	 * @param hi
 	 *            value
 	 * @return Criterion
 	 */
-	public static Expression between(String propertyName, Object lo, Object hi) {
-		return new BetweenExpression(propertyName, lo, hi);
+	public static Expression between(String columnKey, Object lo, Object hi) {
+		return new BetweenExpression(columnKey, lo, hi);
 	}
 
 	/**
 	 * Apply an "in" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param values
 	 * @return Criterion
 	 */
-	public static Expression in(String propertyName, Object[] values) {
-		return new InExpression(propertyName, values);
+	public static Expression in(String columnKey, Object[] values) {
+		return new InExpression(columnKey, values);
 	}
 
 	/**
 	 * Apply an "in" constraint to the named property
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param values
 	 * @return Criterion
 	 */
-	public static Expression in(String propertyName, Collection values) {
-		return new InExpression(propertyName, values.toArray());
+	public static Expression in(String columnKey, Collection values) {
+		return new InExpression(columnKey, values.toArray());
 	}
 
 	/**
@@ -133,8 +133,8 @@ public class Restrictions {
 	 * 
 	 * @return Criterion
 	 */
-	public static Expression isNull(String propertyName) {
-		return new NullExpression(propertyName);
+	public static Expression isNull(String columnKey) {
+		return new NullExpression(columnKey);
 	}
 
 	/**
@@ -142,8 +142,8 @@ public class Restrictions {
 	 * 
 	 * @return Criterion
 	 */
-	public static Expression isNotNull(String propertyName) {
-		return new NotNullExpression(propertyName);
+	public static Expression isNotNull(String columnKey) {
+		return new NotNullExpression(columnKey);
 	}
 
 	/**
@@ -159,23 +159,23 @@ public class Restrictions {
 	/**
 	 * EXISTS表达式
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param subquery
 	 * @return
 	 */
-	public static Expression isEmpty(String propertyName, String subquery) {
-		return new EmptyExpression(propertyName, subquery);
+	public static Expression isEmpty(String columnKey, String subquery) {
+		return new EmptyExpression(columnKey, subquery);
 	}
 
 	/**
 	 * NOT EXISTS表达式
 	 * 
-	 * @param propertyName
+	 * @param columnKey
 	 * @param subquery
 	 * @return
 	 */
-	public static Expression isNotEmpty(String propertyName, String subquery) {
-		return new NotEmptyExpression(propertyName, subquery);
+	public static Expression isNotEmpty(String columnKey, String subquery) {
+		return new NotEmptyExpression(columnKey, subquery);
 	}
 
 }

@@ -2,6 +2,9 @@ package galaxy.sqlanlysis.core.model.expression;
 
 import galaxy.sqlanlysis.core.SqlBuffer;
 import galaxy.sqlanlysis.core.dialect.Dialect;
+import galaxy.sqlanlysis.core.exception.IllegalExpressionException;
+import galaxy.sqlanlysis.core.model.column.ColumnModel;
+import galaxy.sqlanlysis.core.model.value.ValueModel;
 
 /**
  * 一般的键值对表达式
@@ -10,29 +13,37 @@ import galaxy.sqlanlysis.core.dialect.Dialect;
  * @date 2012-11-30
  */
 public class SimpleExpression implements Expression {
-	private final String propertyName;
-	private final Object value;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -552726978589835537L;
+	private final int columnKey;
+	private final int valueKey;
 	private final String operator;
 
 	/**
 	 * 
-	 * @param propertyName
-	 *            属性名
+	 * @param columnKey
+	 *            属性关键字
 	 * @param value
-	 *            值
+	 *            值关键字
 	 * @param operator
 	 *            操作符
 	 */
-	public SimpleExpression(String propertyName, Object value, String operator) {
-		this.propertyName = propertyName;
-		this.value = value;
+	public SimpleExpression(int columnKey, int valueKey, String operator) {
+		this.columnKey = columnKey;
+		this.valueKey = valueKey;
 		this.operator = operator;
 	}
 
 	@Override
-	public String toSqlString(Dialect dialect) {
+	public String toSqlString(Dialect dialect, ColumnModel column,
+			ValueModel value) {
+		if (column == null || value == null)
+			throw new IllegalExpressionException("字段或者值模型为null");
 		SqlBuffer buffer = new SqlBuffer();
-		buffer.append(propertyName);
+		String columnSql =column.render(dialect,columnKey);
+		buffer.append(columnSql);
 		buffer.append(operator);
 		buffer.append(String.valueOf(value));
 		return buffer.getSql();
