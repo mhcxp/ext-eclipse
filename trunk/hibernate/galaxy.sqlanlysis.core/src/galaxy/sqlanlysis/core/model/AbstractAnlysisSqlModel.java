@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 可分析SQL模型抽象类
  * 
  * @author caiyu
  * @date 2012-11-14

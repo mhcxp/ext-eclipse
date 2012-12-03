@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Select模型
+ * Select查询语句模型
  * 
  * @author caiyu
  * @date 2012-11-13
